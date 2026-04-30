@@ -8,9 +8,23 @@ interface Stop {
   name: string;
 }
 
-interface StopCategory {
+interface StopGroup {
   category: string;
   stops: Stop[];
+}
+
+interface Trip {
+  id?: string;
+  dayType: string;
+  times: string[];
+}
+
+interface ScheduleLine {
+  line: string;
+  lineName: string;
+  stops: string[];
+  stopIds?: string[];
+  trips: Trip[];
 }
 
 interface TripResult {
@@ -23,6 +37,9 @@ interface TripResult {
   duration: number;
 }
 
+const typedStopsData = stopsData as StopGroup[];
+const typedSchedulesData = schedulesData as ScheduleLine[];
+
 const SearchBox = () => {
   const [origins, setOrigins] = useState<Stop[]>([]);
   const [destinations, setDestinations] = useState<Stop[]>([]);
@@ -33,6 +50,7 @@ const SearchBox = () => {
     const now = new Date();
     return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
   });
+  const [endTime, setEndTime] = useState("23:59");
   const [dayType, setDayType] = useState<'business' | 'saturday' | 'holiday'>('business');
 
   const addStop = (stop: Stop, type: 'origin' | 'destination') => {
@@ -63,12 +81,11 @@ const SearchBox = () => {
     if (origins.length === 0 || destinations.length === 0) return;
 
     const foundOptions: TripResult[] = [];
-    const normalizedOrigins = origins.map(o => normalize(o.name));
-    const normalizedDestinations = destinations.map(d => normalize(d.name));
+    const originIds = origins.map(o => o.id);
+    const destinationIds = destinations.map(d => d.id);
 
-    for (const line of schedulesData) {
+    for (const line of typedSchedulesData) {
       for (const trip of line.trips) {
-        // Filtrar por tipo de dia (suporta 'all' para linhas diárias)
         if (trip.dayType !== dayType && trip.dayType !== 'all') continue;
 
         let bestOriginIdx = -1;
@@ -76,38 +93,44 @@ const SearchBox = () => {
         let matchedOriginName = "";
         let matchedDestName = "";
 
-        // Encontrar a primeira paragem que é uma das origens selecionadas E tem tempo >= targetTime
-        for (let i = 0; i < line.stops.length; i++) {
-          const stopInLine = line.stops[i];
-          const normalizedStop = normalize(stopInLine);
+        // Encontrar a primeira paragem que é uma das origens selecionadas E tem tempo no intervalo [targetTime, endTime]
+        for (let i = 0; i < (line.stopIds || line.stops).length; i++) {
+          const stopId = line.stopIds ? line.stopIds[i] : null;
+          const stopName = line.stops[i];
           const stopTime = trip.times[i];
 
           if (stopTime === "-" || stopTime === "--:--") continue;
 
-          // Verificar se esta paragem é uma das origens
-          if (normalizedOrigins.some(no => normalizedStop.includes(no) || no.includes(normalizedStop))) {
-            // Verificar se o tempo é válido
-            if (stopTime >= targetTime) {
+          const isOrigin = stopId 
+            ? originIds.includes(stopId) 
+            : origins.some(o => normalize(o.name) === normalize(stopName));
+
+          if (isOrigin) {
+            // Verificar se o tempo está dentro da janela
+            if (stopTime >= targetTime && stopTime <= endTime) {
               bestOriginIdx = i;
-              matchedOriginName = stopInLine;
-              break; // Encontramos a primeira paragem válida na linha
+              matchedOriginName = stopName;
+              break; 
             }
           }
         }
 
         // Se encontramos uma origem válida, procurar o destino depois dela
         if (bestOriginIdx !== -1) {
-          for (let i = bestOriginIdx + 1; i < line.stops.length; i++) {
-            const stopInLine = line.stops[i];
-            const normalizedStop = normalize(stopInLine);
+          for (let i = bestOriginIdx + 1; i < (line.stopIds || line.stops).length; i++) {
+            const stopId = line.stopIds ? line.stopIds[i] : null;
+            const stopName = line.stops[i];
             const stopTime = trip.times[i];
 
             if (stopTime === "-" || stopTime === "--:--") continue;
 
-            if (normalizedDestinations.some(nd => normalizedStop.includes(nd) || nd.includes(normalizedStop))) {
+            const isDest = stopId 
+              ? destinationIds.includes(stopId) 
+              : destinations.some(d => normalize(d.name) === normalize(stopName));
+
+            if (isDest) {
               bestDestIdx = i;
-              matchedDestName = stopInLine;
-              // Continuamos a procurar para encontrar o destino MAIS LONGE na linha, se houver múltiplos
+              matchedDestName = stopName;
             }
           }
         }
@@ -119,7 +142,7 @@ const SearchBox = () => {
           const [h1, m1] = depTime.split(':').map(Number);
           const [h2, m2] = arrTime.split(':').map(Number);
           let duration = (h2 * 60 + m2) - (h1 * 60 + m1);
-          if (duration < 0) duration += 1440; // Caso passe da meia-noite
+          if (duration < 0) duration += 1440;
 
           foundOptions.push({
             line: line.line,
@@ -137,6 +160,55 @@ const SearchBox = () => {
     setResults(foundOptions.sort((a, b) => a.departure.localeCompare(b.departure)));
   };
 
+  const renderHelper = (type: 'origin' | 'destination') => {
+    if (showHelper !== type) return null;
+    
+    return (
+      <div className="absolute left-0 right-0 top-[calc(100%+8px)] bg-[#1a1f2e]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-slide-up z-50">
+        <div className="p-3 bg-white/5 border-b border-white/10 flex justify-between items-center">
+          <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest flex items-center gap-2">
+            <Search size={12} /> Sugestões
+          </span>
+          <X size={14} className="text-gray-500 cursor-pointer hover:text-white" onClick={() => setShowHelper(null)} />
+        </div>
+        <div className="max-h-[250px] overflow-y-auto p-2 custom-scrollbar">
+          {typedStopsData.map((group) => (
+            <div key={group.category}>
+              <div className="grid grid-cols-1 gap-1">
+                {group.stops
+                  .filter(s => 
+                    s.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                    s.id.includes(searchTerm)
+                  )
+                  .slice(0, 10) // Limitar para não inundar
+                  .map(stop => (
+                    <button
+                      key={stop.id}
+                      onClick={() => addStop(stop, type)}
+                      className="text-left text-sm text-gray-300 p-3 rounded-xl hover:bg-white/10 transition-all border border-transparent hover:border-white/5 flex items-center justify-between group/item"
+                    >
+                      <div className="flex items-center gap-3">
+                        <MapPin size={14} className="text-gray-600 group-hover/item:text-cyan-500" />
+                        <span className="group-hover/item:text-white transition-colors">{stop.name}</span>
+                      </div>
+                      <span className="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded border border-white/5 group-hover/item:border-cyan-500/30 group-hover/item:text-cyan-400 transition-all">
+                        #{stop.id}
+                      </span>
+                    </button>
+                  ))}
+              </div>
+            </div>
+          ))}
+          {searchTerm && typedStopsData[0].stops.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase()) || s.id.includes(searchTerm)).length === 0 && (
+            <div className="p-4 text-center text-gray-500 text-xs italic">
+              Nenhuma paragem encontrada para "{searchTerm}"
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="max-w-2xl mx-auto mt-10 px-4">
       <div className="glass-container p-6 rounded-3xl shadow-2xl animate-fade-in relative z-20">
@@ -147,77 +219,58 @@ const SearchBox = () => {
         {/* ORIGINS */}
         <div className="mb-4">
           <label className="text-xs font-semibold text-cyan-400/70 uppercase tracking-wider mb-2 block">De onde podes partir?</label>
-          <div className="flex flex-wrap gap-2 p-3 bg-white/5 border border-white/10 rounded-xl focus-within:border-cyan-500/50 transition-all min-h-[50px]">
-            {origins.map(stop => (
-              <span key={stop.id} className="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-sm flex items-center gap-1 border border-cyan-500/30">
-                {stop.name}
-                <X size={14} className="cursor-pointer hover:text-white" onClick={() => removeStop(stop.id, 'origin')} />
-              </span>
-            ))}
-            <input
-              type="text"
-              placeholder={origins.length === 0 ? "Ex: Hospital, UBI..." : ""}
-              className="bg-transparent border-none outline-none text-white flex-1 min-w-[120px]"
-              onFocus={() => setShowHelper('origin')}
-              value={showHelper === 'origin' ? searchTerm : ''}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <div className="relative">
+            <div className={`flex flex-wrap gap-2 p-3 bg-white/5 border border-white/10 rounded-xl transition-all min-h-[50px] ${showHelper === 'origin' ? 'border-cyan-500/50 bg-cyan-500/5 ring-4 ring-cyan-500/10' : ''}`}>
+              {origins.map(stop => (
+                <span key={stop.id} className="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-[11px] font-bold flex items-center gap-1.5 border border-cyan-500/30">
+                  <span className="opacity-40 font-mono text-[9px]">#{stop.id}</span>
+                  {stop.name}
+                  <X size={14} className="cursor-pointer hover:text-white" onClick={() => removeStop(stop.id, 'origin')} />
+                </span>
+              ))}
+              <input
+                type="text"
+                placeholder={origins.length === 0 ? "Ex: Hospital, UBI..." : ""}
+                className="bg-transparent border-none outline-none text-white flex-1 min-w-[120px]"
+                onFocus={() => {
+                  setShowHelper('origin');
+                  setSearchTerm('');
+                }}
+                value={showHelper === 'origin' ? searchTerm : ''}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            {renderHelper('origin')}
           </div>
         </div>
 
         {/* DESTINATIONS */}
         <div className="mb-6">
           <label className="text-xs font-semibold text-purple-400/70 uppercase tracking-wider mb-2 block">Para onde queres ir?</label>
-          <div className="flex flex-wrap gap-2 p-3 bg-white/5 border border-white/10 rounded-xl focus-within:border-purple-500/50 transition-all min-h-[50px]">
-            {destinations.map(stop => (
-              <span key={stop.id} className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm flex items-center gap-1 border border-purple-500/30">
-                {stop.name}
-                <X size={14} className="cursor-pointer hover:text-white" onClick={() => removeStop(stop.id, 'destination')} />
-              </span>
-            ))}
-            <input
-              type="text"
-              placeholder={destinations.length === 0 ? "Ex: Serra Shopping..." : ""}
-              className="bg-transparent border-none outline-none text-white flex-1 min-w-[120px]"
-              onFocus={() => setShowHelper('destination')}
-              value={showHelper === 'destination' ? searchTerm : ''}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <div className="relative">
+            <div className={`flex flex-wrap gap-2 p-3 bg-white/5 border border-white/10 rounded-xl transition-all min-h-[50px] ${showHelper === 'destination' ? 'border-purple-500/50 bg-purple-500/5 ring-4 ring-purple-500/10' : ''}`}>
+              {destinations.map(stop => (
+                <span key={stop.id} className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-[11px] font-bold flex items-center gap-1.5 border border-purple-500/30">
+                  <span className="opacity-40 font-mono text-[9px]">#{stop.id}</span>
+                  {stop.name}
+                  <X size={14} className="cursor-pointer hover:text-white" onClick={() => removeStop(stop.id, 'destination')} />
+                </span>
+              ))}
+              <input
+                type="text"
+                placeholder={destinations.length === 0 ? "Ex: Serra Shopping..." : ""}
+                className="bg-transparent border-none outline-none text-white flex-1 min-w-[120px]"
+                onFocus={() => {
+                  setShowHelper('destination');
+                  setSearchTerm('');
+                }}
+                value={showHelper === 'destination' ? searchTerm : ''}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            {renderHelper('destination')}
           </div>
         </div>
-
-        {/* HELPER MODAL */}
-        {showHelper && (
-          <div className="absolute left-0 right-0 top-[calc(100%+10px)] bg-[#1a1f2e] border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-slide-up z-30">
-            <div className="p-4 bg-white/5 border-b border-white/10 flex justify-between items-center">
-              <span className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                <Search size={16} className="text-cyan-400" /> Escolher Paragem
-              </span>
-              <X size={18} className="text-gray-500 cursor-pointer hover:text-white" onClick={() => setShowHelper(null)} />
-            </div>
-            <div className="max-h-[350px] overflow-y-auto p-4 custom-scrollbar">
-              {stopsData.map((group) => (
-                <div key={group.category} className="mb-4">
-                  <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[2px] mb-2">{group.category}</h3>
-                  <div className="grid grid-cols-1 gap-1">
-                    {group.stops
-                      .filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase()))
-                      .map(stop => (
-                        <button
-                          key={stop.id}
-                          onClick={() => addStop(stop, showHelper)}
-                          className="text-left text-sm text-gray-300 p-3 rounded-xl hover:bg-white/10 transition-all border border-transparent hover:border-white/5 flex items-center gap-3"
-                        >
-                          <MapPin size={14} className="text-gray-600" />
-                          {stop.name}
-                        </button>
-                      ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* DAY TYPE SELECTOR */}
         <div className="mb-6">
@@ -246,19 +299,33 @@ const SearchBox = () => {
           </div>
         </div>
 
-        {/* TIME PICKER */}
+        {/* TIME PICKER RANGE */}
         <div className="mb-8">
           <label className="text-xs font-semibold text-cyan-400/70 uppercase tracking-wider mb-2 block flex items-center gap-2">
-            <Clock size={14} /> A partir de que horas?
+            <Clock size={14} /> Em que intervalo de horas?
           </label>
-          <input
-            type="time"
-            value={targetTime}
-            onChange={(e) => setTargetTime(e.target.value)}
-            className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white text-xl font-bold focus:border-cyan-500/50 outline-none transition-all"
-          />
-          <p className="text-[10px] text-gray-500 mt-2 italic">
-            * Mostraremos autocarros que passem numa das origens após as {targetTime}.
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <span className="text-[10px] text-gray-500 uppercase font-bold ml-1">Depois de</span>
+              <input
+                type="time"
+                value={targetTime}
+                onChange={(e) => setTargetTime(e.target.value)}
+                className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white text-xl font-bold focus:border-cyan-500/50 outline-none transition-all"
+              />
+            </div>
+            <div className="space-y-1">
+              <span className="text-[10px] text-gray-500 uppercase font-bold ml-1">Até às</span>
+              <input
+                type="time"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white text-xl font-bold focus:border-cyan-500/50 outline-none transition-all"
+              />
+            </div>
+          </div>
+          <p className="text-[10px] text-gray-500 mt-3 italic">
+            * Mostraremos autocarros com partida entre as {targetTime} e as {endTime}.
           </p>
         </div>
 

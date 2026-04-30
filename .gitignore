@@ -135,3 +135,5 @@ Thumbs.db
 
 # Project specific
 data/pdfs/
+scripts/
+scratch/

@@ -1,237 +1,2035 @@
 [
   {
-    "category": "Principais Hubs",
+    "category": "Todas as Paragens",
     "stops": [
-      { "id": "terminal_rodoviario", "name": "TERMINAL RODOVIÁRIO" },
-      { "id": "estacao_cp", "name": "ESTAÇÃO CP (PROVISÓRIA)" },
-      { "id": "praca_municipio", "name": "PRAÇA DO MUNICÍPIO" },
-      { "id": "serra_shopping", "name": "SERRA SHOPPING" },
-      { "id": "hospital", "name": "HOSPITAL" },
-      { "id": "terminal_3", "name": "TERMINAL 3" }
-    ]
-  },
-  {
-    "category": "Educação (UBI & Escolas)",
-    "stops": [
-      { "id": "ubi", "name": "UBI" },
-      { "id": "ubi_polo_iv", "name": "UBI - POLO IV" },
-      { "id": "ubi_polo_iii", "name": "UBI - POLO III" },
-      { "id": "ubi_acao_social", "name": "UBI - AÇÃO SOCIAL" },
-      { "id": "av_universidade", "name": "AV. DA UNIVERSIDADE" },
-      { "id": "esc_frei_heitor_pinto", "name": "ESC. FREI HEITOR PINTO" },
-      { "id": "esc_frei_h_pinto_campos_melo", "name": "ESC. FREI H. PINTO/CAMPOS MELO" },
-      { "id": "esc_sao_domingos", "name": "ESC. SÃO DOMINGOS" },
-      { "id": "esc_palmeiras", "name": "ESC. PALMEIRAS" },
-      { "id": "esc_rodrigo", "name": "ESC. DO RODRIGO" },
-      { "id": "esc_teixoso", "name": "ESC. TEIXOSO" },
-      { "id": "eb_montes_herminios", "name": "EB MONTES HERMÍNIOS" },
-      { "id": "eb23_tortosendo", "name": "EB23 TORTOSENDO" },
-      { "id": "colegio_freiras", "name": "COLÉGIO DAS FREIRAS" }
-    ]
-  },
-  {
-    "category": "Todas as Paragens (A-Z)",
-    "stops": [
-      { "id": "academico_penedos_altos", "name": "ACADÉMICO PENEDOS ALTOS" },
-      { "id": "agua_alta", "name": "ÁGUA ALTA" },
-      { "id": "alagoeiros", "name": "ALAGOEIROS" },
-      { "id": "alameda_betulas", "name": "ALAMEDA DAS BÉTULAS" },
-      { "id": "alameda_tilias", "name": "ALAMEDA DAS TÍLIAS" },
-      { "id": "alameda_pero_covilha", "name": "ALAMÊDA PÊRO DA COVILHÃ" },
-      { "id": "antiga_fabrica_aguas", "name": "ANTIGA FÁBRICA DAS ÁGUAS" },
-      { "id": "appacdm", "name": "APPACDM" },
-      { "id": "armazem", "name": "ARMAZÉM" },
-      { "id": "av_25_abril", "name": "AV. 25 DE ABRIL" },
-      { "id": "av_universidade", "name": "AV. DA UNIVERSIDADE" },
-      { "id": "av_santarem", "name": "AV. DE SANTARÉM" },
-      { "id": "av_anil", "name": "AV. DO ANIL" },
-      { "id": "av_santiago", "name": "AV. SANTIAGO" },
-      { "id": "av_viriato", "name": "AV. VIRIATO" },
-      { "id": "bairro_alampada", "name": "BAIRRO ALAMPADA" },
-      { "id": "bairro_biquinha_i", "name": "BAIRRO BIQUINHA I" },
-      { "id": "bairro_biquinha_ii", "name": "BAIRRO BIQUINHA II" },
-      { "id": "bairro_biquinha_terminal", "name": "BAIRRO BIQUINHA TERMINAL" },
-      { "id": "bairro_artes_i", "name": "BAIRRO DAS ARTES I" },
-      { "id": "bairro_artes_ii", "name": "BAIRRO DAS ARTES II" },
-      { "id": "bairro_cabeco", "name": "BAIRRO DO CABEÇO" },
-      { "id": "bairro_caldeiroees", "name": "BAIRRO DOS CALDEIRÕES" },
-      { "id": "bairro_ribeira_agua_alta", "name": "BAIRRO RIBEIRA ÁGUA ALTA" },
-      { "id": "bairro_sao_salvador_i", "name": "BAIRRO SÃO SALVADOR I" },
-      { "id": "bairro_sao_salvador_ii", "name": "BAIRRO SÃO SALVADOR II" },
-      { "id": "baixo_serra_shopping", "name": "BAIXO SERRA SHOPPING" },
-      { "id": "biblioteca_municipal", "name": "BIBLIOTECA MUNICIPAL" },
-      { "id": "boidobra_largo", "name": "BOIDOBRA LARGO" },
-      { "id": "boidobra_terminal", "name": "BOIDOBRA TERMINAL" },
-      { "id": "bombeiros", "name": "BOMBEIROS" },
-      { "id": "cafe_millenium", "name": "CAFÉ MILLENIUM" },
-      { "id": "caminho_sao_miguel", "name": "CAMINHO DE SÃO MIGUEL" },
-      { "id": "campo_futebol_teixoso", "name": "CAMPO FUTEBOL TEIXOSO" },
-      { "id": "canhoso", "name": "CANHOSO" },
-      { "id": "canhoso_continente", "name": "CANHOSO - CONTINENTE" },
-      { "id": "capela_sao_domingos", "name": "CAPELA SÃO DOMINGOS" },
-      { "id": "carpinteira", "name": "CARPINTEIRA" },
-      { "id": "casal_serra", "name": "CASAL DA SERRA" },
-      { "id": "casal_serra_montes_herminios", "name": "CASAL DA SERRA M. HERMÍNIOS" },
-      { "id": "cemiterio", "name": "CEMITÉRIO" },
-      { "id": "centro_saude", "name": "CENTRO DE SAÚDE" },
-      { "id": "colegio_freiras", "name": "COLÉGIO DAS FREIRAS" },
-      { "id": "cz_rua_operario", "name": "CZ. RUA DO OPERÁRIO" },
-      { "id": "dr_jose_valerio_cruz", "name": "DR. JOSÉ VALÉRIO CRUZ" },
-      { "id": "dr_jose_valerio_cruz_i", "name": "DR. JOSÉ VALÉRIO CRUZ I" },
-      { "id": "eb_montes_herminios", "name": "EB MONTES HERMÍNIOS" },
-      { "id": "eb23_tortosendo", "name": "EB23 TORTOSENDO" },
-      { "id": "eixo_tct_pontao", "name": "EIXO TCT (PONTÃO)" },
-      { "id": "elefante_azul", "name": "ELEFANTE AZUL" },
-      { "id": "elevador_jardim", "name": "ELEVADOR DO JARDIM" },
-      { "id": "em507_cz_tct", "name": "EM507 CZ. TCT" },
-      { "id": "em507_passagem_nivel", "name": "EM507 PASSAGEM DE NÍVEL" },
-      { "id": "em513", "name": "EM513" },
-      { "id": "encosta_baiuca", "name": "ENCOSTA DA BAIUCA" },
-      { "id": "esc_rodrigo", "name": "ESC. DO RODRIGO" },
-      { "id": "esc_frei_h_pinto_campos_melo", "name": "ESC. FREI H. PINTO/CAMPOS MELO" },
-      { "id": "esc_frei_heitor_pinto", "name": "ESC. FREI HEITOR PINTO" },
-      { "id": "esc_palmeiras", "name": "ESC. PALMEIRAS" },
-      { "id": "esc_sao_domingos", "name": "ESC. SÃO DOMINGOS" },
-      { "id": "esc_teixoso", "name": "ESC. TEIXOSO" },
-      { "id": "espaco_idades", "name": "ESPAÇO DAS IDADES" },
-      { "id": "espertim_en230", "name": "ESPERTIM EN230" },
-      { "id": "estacao_cp", "name": "ESTAÇÃO CP (PROVISÓRIA)" },
-      { "id": "estadio_municipal", "name": "ESTÁDIO MUNICIPAL" },
-      { "id": "filarmonica_carvalhense", "name": "FILARMÓNICA CARVALHENSE" },
-      { "id": "financas", "name": "FINANÇAS" },
-      { "id": "financas_antigas", "name": "FINANÇAS ANTIGAS" },
-      { "id": "galp", "name": "GALP" },
-      { "id": "garagem_sao_joao_largo", "name": "GARAGEM SÃO JOÃO LARGO" },
-      { "id": "garagem_sao_joao_lateral", "name": "GARAGEM SÃO JOÃO LATERAL" },
-      { "id": "gnr_covilha", "name": "GNR COVILHÃ" },
-      { "id": "gnr_tortosendo", "name": "GNR TORTOSENDO" },
-      { "id": "grupo_campos_melo", "name": "GRUPO CAMPOS MELO" },
-      { "id": "grupo_mata", "name": "GRUPO DA MATA" },
-      { "id": "grupo_do_rodrigo", "name": "GRUPO DO RODRIGO" },
-      { "id": "grupo_estrela_pousadinha", "name": "GRUPO ESTRELA DA POUSADINHA" },
-      { "id": "grupo_recreativo_refugiense", "name": "GRUPO RECREATIVO REFUGIENSE" },
-      { "id": "grupo_rodrigo", "name": "GRUPO RODRIGO" },
-      { "id": "hospital", "name": "HOSPITAL" },
-      { "id": "hospital_parque", "name": "HOSPITAL (PARQUE)" },
-      { "id": "hospital_privado", "name": "HOSPITAL PRIVADO DAS BEIRAS" },
-      { "id": "hotel_carqueijais", "name": "HOTEL DOS CARQUEIJAIS" },
-      { "id": "hotel_pura_la", "name": "HOTEL PURA LÃ" },
-      { "id": "igreja_penedos_altos", "name": "IGREJA PENEDOS ALTOS" },
-      { "id": "inatel", "name": "INATEL" },
-      { "id": "intermarche", "name": "INTERMARCHÉ" },
-      { "id": "jardim_melos", "name": "JARDIM DOS MELOS" },
-      { "id": "jardim_publico", "name": "JARDIM PÚBLICO" },
-      { "id": "junta_freguesia_tortosendo", "name": "JUNTA FREGUESIA TORTOSENDO" },
-      { "id": "lanofabril", "name": "LANOFABRIL" },
-      { "id": "largo_alampada", "name": "LARGO ALAMPADA" },
-      { "id": "largo_pousadinha", "name": "LARGO DA POUSADINHA" },
-      { "id": "largo_santo_antonio", "name": "LARGO DE SANTO ANTÓNIO" },
-      { "id": "martir_in_colo", "name": "MÁRTIR IN COLO" },
-      { "id": "meia_legua", "name": "MEIA LÉGUA" },
-      { "id": "mercado_municipal", "name": "MERCADO MUNICIPAL" },
-      { "id": "modatex", "name": "MODATEX" },
-      { "id": "n_sra_conceicao", "name": "N. SRA. DA CONCEIÇÃO" },
-      { "id": "o_pimenta", "name": "O PIMENTA" },
-      { "id": "palmatoria", "name": "PALMATÓRIA" },
-      { "id": "parque_campismo_piao", "name": "PARQUE CAMPISMO PIÃO" },
-      { "id": "parque_industrial_canhoso", "name": "PARQUE INDUSTRIAL CANHOSO" },
-      { "id": "paulo_oliveira", "name": "PAULO OLIVEIRA" },
-      { "id": "pedra_amores", "name": "PEDRA DOS AMORES" },
-      { "id": "penedos_altos", "name": "PENEDOS ALTOS" },
-      { "id": "penhas_saude", "name": "PENHAS DA SAÚDE" },
-      { "id": "pic_antero_brancal", "name": "PIC ANTERO BRANCAL" },
-      { "id": "pic_ramalha", "name": "PIC RAMALHA" },
-      { "id": "pic_tintas_cin", "name": "PIC TINTAS CIN" },
-      { "id": "pic_transdev_i", "name": "PIC TRANSDEV I" },
-      { "id": "pic_transdev_ii", "name": "PIC TRANSDEV II" },
-      { "id": "pinhos_mansos", "name": "PINHOS MANSOS" },
-      { "id": "pit_cascalhal", "name": "PIT CASCALHAL" },
-      { "id": "pit_mercedes", "name": "PIT MERCEDES" },
-      { "id": "pit_nercab", "name": "PIT NERCAB" },
-      { "id": "pit_parkurbis", "name": "PIT PARKURBIS" },
-      { "id": "pit_pinto_filho", "name": "PIT PINTO E FILHO" },
-      { "id": "pit_terminal", "name": "PIT TERMINAL" },
-      { "id": "ponte_canhoso", "name": "PONTE CANHOSO" },
-      { "id": "ponte_cantar_galo", "name": "PONTE CANTAR-GALO" },
-      { "id": "ponte_carpinteira", "name": "PONTE DA CARPINTEIRA" },
-      { "id": "portela_largo", "name": "PORTELA LARGO" },
-      { "id": "portela_terminal", "name": "PORTELA TERMINAL" },
-      { "id": "posto_turismo_antigo", "name": "POSTO TURISMO ANTIGO" },
-      { "id": "pousada_juventude", "name": "POUSADA DA JUVENTUDE" },
-      { "id": "pousada_serra_estrela", "name": "POUSADA SERRA DA ESTRELA" },
-      { "id": "pousadinha", "name": "POUSADINHA" },
-      { "id": "pouso", "name": "POUSO" },
-      { "id": "praca_municipio", "name": "PRAÇA DO MUNICÍPIO" },
-      { "id": "qta_estremilda", "name": "QTA. ESTREMILDA" },
-      { "id": "qta_polito_baixo", "name": "QTA. POLITO DE BAIXO" },
-      { "id": "qta_ponte_terra_ii", "name": "QTA. PONTE TERRA II" },
-      { "id": "qta_rosas", "name": "QTA. ROSAS" },
-      { "id": "qta_santo_antonio", "name": "QTA. SANTO ANTÓNIO" },
-      { "id": "quinta_amendoeiras", "name": "QUINTA DAS AMENDOEIRAS" },
-      { "id": "quinta_rosas", "name": "QUINTA DAS ROSAS" },
-      { "id": "quinta_estrela_covelo", "name": "QUINTA DO ESTRELA (COVELO)" },
-      { "id": "quinta_sol", "name": "QUINTA DO SOL" },
-      { "id": "quinta_nova", "name": "QUINTA NOVA" },
-      { "id": "r_celestino_david_i", "name": "R. CELESTINO DAVID I" },
-      { "id": "r_celestino_david_ii", "name": "R. CELESTINO DAVID II" },
-      { "id": "r_cidade_fundao", "name": "R. CIDADE DO FUNDÃO" },
-      { "id": "r_fernando_antunes", "name": "R. FERNANDO ANTUNES" },
-      { "id": "r_penedos_altos", "name": "R. PENEDOS ALTOS" },
-      { "id": "r_tulipas_ii", "name": "R. TULIPAS II" },
-      { "id": "radio_covilha", "name": "RÁDIO DA COVILHÃ" },
-      { "id": "refugio", "name": "REFÚGIO" },
-      { "id": "rego_agua_portela", "name": "REGO DE ÁGUA PORTELA" },
-      { "id": "repsol", "name": "REPSOL" },
-      { "id": "ribeiro_flandres_i", "name": "RIBEIRO FLANDRES I" },
-      { "id": "ribeiro_flandres_ii", "name": "RIBEIRO FLANDRES II" },
-      { "id": "rotunda_caldeiroees", "name": "ROTUNDA DOS CALDEIRÕES" },
-      { "id": "rua_centro_artes", "name": "RUA CENTRO DAS ARTES" },
-      { "id": "rua_centro_paroquial", "name": "RUA CENTRO PAROQUIAL" },
-      { "id": "rua_amoreira", "name": "RUA DA AMOREIRA" },
-      { "id": "rua_calva", "name": "RUA DA CALVA" },
-      { "id": "rua_industria_i", "name": "RUA DA INDÚSTRIA I" },
-      { "id": "rua_industria_ii", "name": "RUA DA INDÚSTRIA II" },
-      { "id": "rua_tulipas_covelo", "name": "RUA DAS TULIPAS (COVELO)" },
-      { "id": "rua_santo_antonio", "name": "RUA DE SANTO ANTÓNIO" },
-      { "id": "rua_comercio", "name": "RUA DO COMÉRCIO" },
-      { "id": "rua_abrunheiros_covelo", "name": "RUA DOS ABRUNHEIROS (COVELO)" },
-      { "id": "rua_cedros_covelo", "name": "RUA DOS CEDROS (COVELO)" },
-      { "id": "rua_gregorio_geraldes", "name": "RUA GREGÓRIO GERALDES" },
-      { "id": "rua_joao_xxiii", "name": "RUA JOÃO XXIII" },
-      { "id": "rua_jose_caetano_jr", "name": "RUA JOSÉ CAETANO JR." },
-      { "id": "rua_mateus_fernandes", "name": "RUA MATEUS FERNANDES" },
-      { "id": "rua_montes_herminios", "name": "RUA MONTES HERMÍNIOS" },
-      { "id": "rua_montes_herminios_i", "name": "RUA MONTES HERMÍNIOS I" },
-      { "id": "santa_casa_misericordia", "name": "SANTA CASA DA MISERICÓRDIA" },
-      { "id": "sao_domingos", "name": "SÃO DOMINGOS" },
-      { "id": "serra_shopping", "name": "SERRA SHOPPING" },
-      { "id": "sete_capotes", "name": "SETE CAPOTES" },
-      { "id": "shopping_sporting", "name": "SHOPPING SPORTING" },
-      { "id": "sitio_parede", "name": "SÍTIO DA PAREDE" },
-      { "id": "sitio_pousada", "name": "SÍTIO DA POUSADA" },
-      { "id": "subestacao_meia_legua", "name": "SUBESTAÇÃO MEIA LÉGUA" },
-      { "id": "tct_refugio", "name": "TCT REFÚGIO" },
-      { "id": "teixoso_cemiterio", "name": "TEIXOSO CEMITÉRIO" },
-      { "id": "teixoso_gnr", "name": "TEIXOSO GNR" },
-      { "id": "teixoso_quiosque", "name": "TEIXOSO QUIOSQUE" },
-      { "id": "terminal_3", "name": "TERMINAL 3" },
-      { "id": "terminal_rodoviario", "name": "TERMINAL RODOVIÁRIO" },
-      { "id": "torre", "name": "TORRE" },
-      { "id": "tortosendo_ze_carioca", "name": "TORTOSENDO - ZÉ CARIOCA" },
-      { "id": "travessa_amoreira", "name": "TRAVESSA DA AMOREIRA" },
-      { "id": "travessa_santo_antonio", "name": "TRAVESSA DE SANTO ANTÓNIO" },
-      { "id": "tribunal", "name": "TRIBUNAL" },
-      { "id": "ubi", "name": "UBI" },
-      { "id": "ubi_acao_social", "name": "UBI - AÇÃO SOCIAL" },
-      { "id": "ubi_polo_iii", "name": "UBI - POLO III" },
-      { "id": "ubi_polo_iv", "name": "UBI - POLO IV" },
-      { "id": "urb_belavista", "name": "URB. BELAVISTA" },
-      { "id": "urb_claraboia", "name": "URB. CLARABÓIA" },
-      { "id": "urb_belo_zezere", "name": "URBANIZAÇÃO BELO ZÊZERE" },
-      { "id": "urb_boavista", "name": "URBANIZAÇÃO DA BOAVISTA" },
-      { "id": "urb_pera_longa_i", "name": "URBANIZAÇÃO PERA LONGA I" },
-      { "id": "urb_pera_longa_ii", "name": "URBANIZAÇÃO PERA LONGA II" },
-      { "id": "vila_carvalho", "name": "VILA DO CARVALHO" }
+      {
+        "id": "7196",
+        "name": "ACADÉMICO PENEDOS ALTOS",
+        "lat": 40.286386,
+        "lng": -7.500083
+      },
+      {
+        "id": "57",
+        "name": "ÁGUA ALTA",
+        "lat": 40.26711622,
+        "lng": -7.510030118
+      },
+      {
+        "id": "7112",
+        "name": "ÁGUA ALTA",
+        "lat": 40.26722167,
+        "lng": -7.50989
+      },
+      {
+        "id": "7079",
+        "name": "ALAGOEIROS",
+        "lat": 40.29671761,
+        "lng": -7.502690894
+      },
+      {
+        "id": "34",
+        "name": "ALAGOEIROS",
+        "lat": 40.29684133,
+        "lng": -7.502643658
+      },
+      {
+        "id": "136",
+        "name": "ALAMEDA DAS BÉTULAS",
+        "lat": 40.29980007,
+        "lng": -7.470965276
+      },
+      {
+        "id": "7191",
+        "name": "ALAMEDA DAS TÍLIAS",
+        "lat": 40.30218,
+        "lng": -7.466233333
+      },
+      {
+        "id": "7186",
+        "name": "ALAMEDA DAS TÍLIAS",
+        "lat": 40.30222095,
+        "lng": -7.466181744
+      },
+      {
+        "id": "127",
+        "name": "ALAMÊDA PÊRO DA COVILHÃ",
+        "lat": 40.26615107,
+        "lng": -7.494599373
+      },
+      {
+        "id": "30",
+        "name": "ANTIGA FÁBRICA DAS ÁGUAS",
+        "lat": 40.28739231,
+        "lng": -7.506624077
+      },
+      {
+        "id": "7074",
+        "name": "ANTIGA FÁBRICA DAS ÁGUAS",
+        "lat": 40.28739167,
+        "lng": -7.506455
+      },
+      {
+        "id": "159",
+        "name": "APPACDM",
+        "lat": 40.28200771,
+        "lng": -7.506776069
+      },
+      {
+        "id": "7073",
+        "name": "ARMAZÉM",
+        "lat": 40.286927,
+        "lng": -7.509044
+      },
+      {
+        "id": "29",
+        "name": "ARMAZÉM",
+        "lat": 40.286854,
+        "lng": -7.509176
+      },
+      {
+        "id": "7",
+        "name": "AV. 25 DE ABRIL",
+        "lat": 40.27971814,
+        "lng": -7.501447961
+      },
+      {
+        "id": "7047",
+        "name": "AV. 25 DE ABRIL",
+        "lat": 40.27962601,
+        "lng": -7.501624869
+      },
+      {
+        "id": "7006",
+        "name": "AV. DA UNIVERSIDADE",
+        "lat": 40.27437937,
+        "lng": -7.503462085
+      },
+      {
+        "id": "25",
+        "name": "AV. DA UNIVERSIDADE",
+        "lat": 40.27437969,
+        "lng": -7.503216776
+      },
+      {
+        "id": "117",
+        "name": "AV. DE SANTARÉM",
+        "lat": 40.28390892,
+        "lng": -7.507390942
+      },
+      {
+        "id": "125",
+        "name": "AV. DO ANIL",
+        "lat": 40.271788,
+        "lng": -7.496783
+      },
+      {
+        "id": "7012",
+        "name": "AV. DO ANIL",
+        "lat": 40.272443,
+        "lng": -7.49773
+      },
+      {
+        "id": "135",
+        "name": "AV. SANTIAGO",
+        "lat": 40.2285631,
+        "lng": -7.530340049
+      },
+      {
+        "id": "66",
+        "name": "AV. VIRIATO",
+        "lat": 40.24161636,
+        "lng": -7.523153154
+      },
+      {
+        "id": "7105",
+        "name": "AV. VIRIATO",
+        "lat": 40.24164333,
+        "lng": -7.522885
+      },
+      {
+        "id": "7136",
+        "name": "BAIRRO ALAMPADA",
+        "lat": 40.25486833,
+        "lng": -7.499583333
+      },
+      {
+        "id": "133",
+        "name": "BAIRRO ALAMPADA",
+        "lat": 40.25497185,
+        "lng": -7.499477202
+      },
+      {
+        "id": "7059",
+        "name": "BAIRRO BIQUINHA I",
+        "lat": 40.283185,
+        "lng": -7.513987
+      },
+      {
+        "id": "155",
+        "name": "BAIRRO BIQUINHA I",
+        "lat": 40.28313344,
+        "lng": -7.513943509
+      },
+      {
+        "id": "7060",
+        "name": "BAIRRO BIQUINHA II",
+        "lat": 40.283923,
+        "lng": -7.513684
+      },
+      {
+        "id": "51",
+        "name": "BAIRRO BIQUINHA TERMINAL",
+        "lat": 40.283813,
+        "lng": -7.516176
+      },
+      {
+        "id": "7171",
+        "name": "BAIRRO DAS ARTES I",
+        "lat": 40.27242833,
+        "lng": -7.498815
+      },
+      {
+        "id": "7172",
+        "name": "BAIRRO DAS ARTES II",
+        "lat": 40.27028833,
+        "lng": -7.500613333
+      },
+      {
+        "id": "87",
+        "name": "BAIRRO DO CABEÇO",
+        "lat": 40.23197089,
+        "lng": -7.531007533
+      },
+      {
+        "id": "7099",
+        "name": "BAIRRO DO CABEÇO",
+        "lat": 40.23190112,
+        "lng": -7.531129752
+      },
+      {
+        "id": "7139",
+        "name": "BAIRRO DOS CALDEIRÕES",
+        "lat": 40.254849,
+        "lng": -7.493533671
+      },
+      {
+        "id": "18",
+        "name": "BAIRRO DOS CALDEIRÕES",
+        "lat": 40.25525768,
+        "lng": -7.493233925
+      },
+      {
+        "id": "58",
+        "name": "BAIRRO RIBEIRA ÁGUA ALTA",
+        "lat": 40.265656,
+        "lng": -7.511001
+      },
+      {
+        "id": "7111",
+        "name": "BAIRRO RIBEIRA ÁGUA ALTA",
+        "lat": 40.265623,
+        "lng": -7.51072
+      },
+      {
+        "id": "7188",
+        "name": "BAIRRO SÃO SALVADOR I",
+        "lat": 40.30828909,
+        "lng": -7.462317007
+      },
+      {
+        "id": "7189",
+        "name": "BAIRRO SÃO SALVADOR I",
+        "lat": 40.30793693,
+        "lng": -7.462931248
+      },
+      {
+        "id": "7037",
+        "name": "BAIRRO SÃO SALVADOR II",
+        "lat": 40.310792,
+        "lng": -7.461128
+      },
+      {
+        "id": "48",
+        "name": "BAIRRO SÃO SALVADOR II",
+        "lat": 40.310864,
+        "lng": -7.461067
+      },
+      {
+        "id": "123",
+        "name": "BAIXO SERRA SHOPPING",
+        "lat": 40.27015464,
+        "lng": -7.500175055
+      },
+      {
+        "id": "27",
+        "name": "BIBLIOTECA MUNICIPAL",
+        "lat": 40.27543976,
+        "lng": -7.498663078
+      },
+      {
+        "id": "7016",
+        "name": "BIBLIOTECA MUNICIPAL",
+        "lat": 40.27556167,
+        "lng": -7.498836667
+      },
+      {
+        "id": "7140",
+        "name": "BOIDOBRA LARGO",
+        "lat": 40.253161,
+        "lng": -7.492516
+      },
+      {
+        "id": "19",
+        "name": "BOIDOBRA LARGO",
+        "lat": 40.253166,
+        "lng": -7.492328
+      },
+      {
+        "id": "86",
+        "name": "BOIDOBRA TERMINAL",
+        "lat": 40.24843898,
+        "lng": -7.496997441
+      },
+      {
+        "id": "7142",
+        "name": "BOIDOBRA TERMINAL",
+        "lat": 40.24838222,
+        "lng": -7.496970131
+      },
+      {
+        "id": "7069",
+        "name": "BOMBEIROS",
+        "lat": 40.28342353,
+        "lng": -7.506138455
+      },
+      {
+        "id": "76",
+        "name": "CAFÉ MILLENIUM",
+        "lat": 40.287302,
+        "lng": -7.51295
+      },
+      {
+        "id": "91",
+        "name": "CAMINHO DE SÃO MIGUEL",
+        "lat": 40.24442706,
+        "lng": -7.500341997
+      },
+      {
+        "id": "7143",
+        "name": "CAMINHO DE SÃO MIGUEL",
+        "lat": 40.24445785,
+        "lng": -7.500394242
+      },
+      {
+        "id": "7190",
+        "name": "CAMPO FUTEBOL TEIXOSO",
+        "lat": 40.304965,
+        "lng": -7.463568
+      },
+      {
+        "id": "7187",
+        "name": "CAMPO FUTEBOL TEIXOSO",
+        "lat": 40.304882,
+        "lng": -7.463568
+      },
+      {
+        "id": "44",
+        "name": "CANHOSO",
+        "lat": 40.29607813,
+        "lng": -7.478825272
+      },
+      {
+        "id": "7034",
+        "name": "CANHOSO",
+        "lat": 40.29607583,
+        "lng": -7.478035487
+      },
+      {
+        "id": "7033",
+        "name": "CANHOSO - CONTINENTE",
+        "lat": 40.29424739,
+        "lng": -7.481946443
+      },
+      {
+        "id": "43",
+        "name": "CANHOSO - CONTINENTE",
+        "lat": 40.294344,
+        "lng": -7.481756
+      },
+      {
+        "id": "35",
+        "name": "CAPELA SÃO DOMINGOS",
+        "lat": 40.30030221,
+        "lng": -7.497675658
+      },
+      {
+        "id": "7081",
+        "name": "CAPELA SÃO DOMINGOS",
+        "lat": 40.30028833,
+        "lng": -7.497582697
+      },
+      {
+        "id": "39",
+        "name": "CARPINTEIRA",
+        "lat": 40.28615467,
+        "lng": -7.503356095
+      },
+      {
+        "id": "7198",
+        "name": "CARPINTEIRA",
+        "lat": 40.2866116,
+        "lng": -7.504838931
+      },
+      {
+        "id": "7102",
+        "name": "CASAL DA SERRA",
+        "lat": 40.245445,
+        "lng": -7.530631667
+      },
+      {
+        "id": "7103",
+        "name": "CASAL DA SERRA M. HERMÍNIOS",
+        "lat": 40.2427539,
+        "lng": -7.527565782
+      },
+      {
+        "id": "101",
+        "name": "CASAL DA SERRA M. HERMÍNIOS",
+        "lat": 40.24275006,
+        "lng": -7.527658136
+      },
+      {
+        "id": "130",
+        "name": "CEMITÉRIO",
+        "lat": 40.28338875,
+        "lng": -7.509686492
+      },
+      {
+        "id": "10",
+        "name": "CENTRO DE SAÚDE",
+        "lat": 40.267264,
+        "lng": -7.504753
+      },
+      {
+        "id": "7158",
+        "name": "CENTRO DE SAÚDE",
+        "lat": 40.26790684,
+        "lng": -7.504675666
+      },
+      {
+        "id": "26",
+        "name": "COLÉGIO DAS FREIRAS",
+        "lat": 40.27850007,
+        "lng": -7.503169897
+      },
+      {
+        "id": "7003",
+        "name": "COLÉGIO DAS FREIRAS",
+        "lat": 40.27842497,
+        "lng": -7.503667954
+      },
+      {
+        "id": "16",
+        "name": "CZ. RUA DO OPERÁRIO",
+        "lat": 40.25631562,
+        "lng": -7.499118858
+      },
+      {
+        "id": "7135",
+        "name": "CZ. RUA DO OPERÁRIO",
+        "lat": 40.25665416,
+        "lng": -7.499289854
+      },
+      {
+        "id": "7067",
+        "name": "DR. JOSÉ VALÉRIO CRUZ",
+        "lat": 40.28484167,
+        "lng": -7.510435
+      },
+      {
+        "id": "116",
+        "name": "DR. JOSÉ VALÉRIO CRUZ I",
+        "lat": 40.28608586,
+        "lng": -7.513108646
+      },
+      {
+        "id": "100",
+        "name": "EB MONTES HERMÍNIOS",
+        "lat": 40.24069468,
+        "lng": -7.525235401
+      },
+      {
+        "id": "7104",
+        "name": "EB MONTES HERMÍNIOS",
+        "lat": 40.24071106,
+        "lng": -7.525148229
+      },
+      {
+        "id": "148",
+        "name": "EB23 TORTOSENDO",
+        "lat": 40.237848,
+        "lng": -7.52314
+      },
+      {
+        "id": "149",
+        "name": "EIXO TCT (PONTÃO)",
+        "lat": 40.24014,
+        "lng": -7.520392
+      },
+      {
+        "id": "150",
+        "name": "EIXO TCT (PONTÃO)",
+        "lat": 40.240131,
+        "lng": -7.520602
+      },
+      {
+        "id": "7157",
+        "name": "ELEFANTE AZUL",
+        "lat": 40.26770167,
+        "lng": -7.499336667
+      },
+      {
+        "id": "9",
+        "name": "ELEVADOR DO JARDIM",
+        "lat": 40.28445294,
+        "lng": -7.50309269
+      },
+      {
+        "id": "7044",
+        "name": "ELEVADOR DO JARDIM",
+        "lat": 40.28446182,
+        "lng": -7.503296079
+      },
+      {
+        "id": "7132",
+        "name": "EM507 CZ. TCT",
+        "lat": 40.26041,
+        "lng": -7.506563333
+      },
+      {
+        "id": "22",
+        "name": "EM507 CZ. TCT",
+        "lat": 40.26043695,
+        "lng": -7.506441501
+      },
+      {
+        "id": "15",
+        "name": "EM507 PASSAGEM DE NÍVEL",
+        "lat": 40.259334,
+        "lng": -7.50364
+      },
+      {
+        "id": "7133",
+        "name": "EM507 PASSAGEM DE NÍVEL",
+        "lat": 40.25928022,
+        "lng": -7.503403663
+      },
+      {
+        "id": "134",
+        "name": "EM513",
+        "lat": 40.22851201,
+        "lng": -7.529061167
+      },
+      {
+        "id": "185",
+        "name": "ENCOSTA DA BAIUCA",
+        "lat": 40.299361,
+        "lng": -7.480417
+      },
+      {
+        "id": "186",
+        "name": "ENCOSTA DA BAIUCA",
+        "lat": 40.299389,
+        "lng": -7.4805
+      },
+      {
+        "id": "7051",
+        "name": "ESC. DO RODRIGO",
+        "lat": 40.28146236,
+        "lng": -7.499023504
+      },
+      {
+        "id": "119",
+        "name": "ESC. DO RODRIGO",
+        "lat": 40.28112859,
+        "lng": -7.498961013
+      },
+      {
+        "id": "7048",
+        "name": "ESC. FREI H. PINTO/CAMPOS MELO",
+        "lat": 40.27836402,
+        "lng": -7.501076565
+      },
+      {
+        "id": "9672",
+        "name": "ESC. FREI H. PINTO/CAMPOS MELO",
+        "lat": 40.27860088,
+        "lng": -7.500978358
+      },
+      {
+        "id": "7049",
+        "name": "ESC. FREI HEITOR PINTO",
+        "lat": 40.27698,
+        "lng": -7.500171667
+      },
+      {
+        "id": "5",
+        "name": "ESC. FREI HEITOR PINTO",
+        "lat": 40.27730409,
+        "lng": -7.499861273
+      },
+      {
+        "id": "53",
+        "name": "ESC. PALMEIRAS",
+        "lat": 40.27403345,
+        "lng": -7.500711713
+      },
+      {
+        "id": "7008",
+        "name": "ESC. PALMEIRAS",
+        "lat": 40.27375947,
+        "lng": -7.500481857
+      },
+      {
+        "id": "7170",
+        "name": "ESC. SÃO DOMINGOS",
+        "lat": 40.2974326,
+        "lng": -7.494133274
+      },
+      {
+        "id": "7038",
+        "name": "ESC. TEIXOSO",
+        "lat": 40.31451901,
+        "lng": -7.461603052
+      },
+      {
+        "id": "7179",
+        "name": "ESPAÇO DAS IDADES",
+        "lat": 40.27830667,
+        "lng": -7.494193333
+      },
+      {
+        "id": "7107",
+        "name": "ESPERTIM EN230",
+        "lat": 40.24746459,
+        "lng": -7.515698256
+      },
+      {
+        "id": "62",
+        "name": "ESPERTIM EN230",
+        "lat": 40.24723291,
+        "lng": -7.515765398
+      },
+      {
+        "id": "177",
+        "name": "ESTAÇÃO CP (PROVISÓRIA)",
+        "lat": 40.277847,
+        "lng": -7.496747
+      },
+      {
+        "id": "178",
+        "name": "ESTAÇÃO CP (PROVISÓRIA)",
+        "lat": 40.27788,
+        "lng": -7.496917
+      },
+      {
+        "id": "7061",
+        "name": "ESTÁDIO MUNICIPAL",
+        "lat": 40.28324522,
+        "lng": -7.512819504
+      },
+      {
+        "id": "7082",
+        "name": "FILARMÓNICA CARVALHENSE",
+        "lat": 40.30333773,
+        "lng": -7.493597867
+      },
+      {
+        "id": "36",
+        "name": "FILARMÓNICA CARVALHENSE",
+        "lat": 40.30329377,
+        "lng": -7.49377822
+      },
+      {
+        "id": "162",
+        "name": "FINANÇAS",
+        "lat": 40.28499168,
+        "lng": -7.506822899
+      },
+      {
+        "id": "7007",
+        "name": "FINANÇAS ANTIGAS",
+        "lat": 40.274591,
+        "lng": -7.502306
+      },
+      {
+        "id": "71",
+        "name": "FINANÇAS ANTIGAS",
+        "lat": 40.27419981,
+        "lng": -7.502348649
+      },
+      {
+        "id": "11",
+        "name": "GALP",
+        "lat": 40.264981,
+        "lng": -7.491237
+      },
+      {
+        "id": "6",
+        "name": "GARAGEM SÃO JOÃO LARGO",
+        "lat": 40.28173423,
+        "lng": -7.501333365
+      },
+      {
+        "id": "7046",
+        "name": "GARAGEM SÃO JOÃO LARGO",
+        "lat": 40.28153667,
+        "lng": -7.501378333
+      },
+      {
+        "id": "7045",
+        "name": "GARAGEM SÃO JOÃO LATERAL",
+        "lat": 40.28186453,
+        "lng": -7.502014981
+      },
+      {
+        "id": "8",
+        "name": "GARAGEM SÃO JOÃO LATERAL",
+        "lat": 40.282155,
+        "lng": -7.502113024
+      },
+      {
+        "id": "7180",
+        "name": "GNR COVILHÃ",
+        "lat": 40.27874167,
+        "lng": -7.491396667
+      },
+      {
+        "id": "132",
+        "name": "GNR TORTOSENDO",
+        "lat": 40.23079678,
+        "lng": -7.526500148
+      },
+      {
+        "id": "7063",
+        "name": "GRUPO CAMPOS MELO",
+        "lat": 40.284659,
+        "lng": -7.511974
+      },
+      {
+        "id": "7058",
+        "name": "GRUPO DA MATA",
+        "lat": 40.281608,
+        "lng": -7.512637
+      },
+      {
+        "id": "156",
+        "name": "GRUPO DA MATA",
+        "lat": 40.281647,
+        "lng": -7.512684
+      },
+      {
+        "id": "7052",
+        "name": "GRUPO DO RODRIGO",
+        "lat": 40.283572,
+        "lng": -7.499398
+      },
+      {
+        "id": "97",
+        "name": "GRUPO ESTRELA DA POUSADINHA",
+        "lat": 40.29892813,
+        "lng": -7.50256059
+      },
+      {
+        "id": "7169",
+        "name": "GRUPO ESTRELA DA POUSADINHA",
+        "lat": 40.29886928,
+        "lng": -7.502472619
+      },
+      {
+        "id": "7212",
+        "name": "GRUPO RECREATIVO REFUGIENSE",
+        "lat": 40.262591,
+        "lng": -7.506368
+      },
+      {
+        "id": "163",
+        "name": "GRUPO RECREATIVO REFUGIENSE",
+        "lat": 40.262886,
+        "lng": -7.506278
+      },
+      {
+        "id": "118",
+        "name": "GRUPO RODRIGO",
+        "lat": 40.28358,
+        "lng": -7.499595
+      },
+      {
+        "id": "7154",
+        "name": "HOSPITAL",
+        "lat": 40.26523786,
+        "lng": -7.492202187
+      },
+      {
+        "id": "9676",
+        "name": "HOSPITAL (PARQUE)",
+        "lat": 40.26678567,
+        "lng": -7.492974904
+      },
+      {
+        "id": "174",
+        "name": "HOSPITAL PRIVADO DAS BEIRAS",
+        "lat": 40.280282,
+        "lng": -7.493545
+      },
+      {
+        "id": "80",
+        "name": "HOTEL DOS CARQUEIJAIS",
+        "lat": 40.29070043,
+        "lng": -7.527454819
+      },
+      {
+        "id": "81",
+        "name": "HOTEL DOS CARQUEIJAIS",
+        "lat": 40.29050607,
+        "lng": -7.527489688
+      },
+      {
+        "id": "49",
+        "name": "HOTEL PURA LÃ",
+        "lat": 40.267337,
+        "lng": -7.496764
+      },
+      {
+        "id": "7155",
+        "name": "HOTEL PURA LÃ",
+        "lat": 40.2673058,
+        "lng": -7.496230637
+      },
+      {
+        "id": "72",
+        "name": "IGREJA PENEDOS ALTOS",
+        "lat": 40.288134,
+        "lng": -7.5022
+      },
+      {
+        "id": "73",
+        "name": "IGREJA PENEDOS ALTOS",
+        "lat": 40.288133,
+        "lng": -7.502087
+      },
+      {
+        "id": "50",
+        "name": "INATEL",
+        "lat": 40.279022,
+        "lng": -7.495875732
+      },
+      {
+        "id": "7178",
+        "name": "INATEL",
+        "lat": 40.27895,
+        "lng": -7.495767297
+      },
+      {
+        "id": "7010",
+        "name": "INTERMARCHÉ",
+        "lat": 40.270778,
+        "lng": -7.493578
+      },
+      {
+        "id": "7011",
+        "name": "INTERMARCHÉ",
+        "lat": 40.270849,
+        "lng": -7.494112
+      },
+      {
+        "id": "7197",
+        "name": "JARDIM DOS MELOS",
+        "lat": 40.28649907,
+        "lng": -7.501411283
+      },
+      {
+        "id": "7164",
+        "name": "JARDIM DOS MELOS",
+        "lat": 40.28660833,
+        "lng": -7.501721667
+      },
+      {
+        "id": "7072",
+        "name": "JARDIM PÚBLICO",
+        "lat": 40.284114,
+        "lng": -7.505091
+      },
+      {
+        "id": "28",
+        "name": "JARDIM PÚBLICO",
+        "lat": 40.28402,
+        "lng": -7.505187
+      },
+      {
+        "id": "65",
+        "name": "JUNTA FREGUESIA TORTOSENDO",
+        "lat": 40.23512265,
+        "lng": -7.528052764
+      },
+      {
+        "id": "7100",
+        "name": "JUNTA FREGUESIA TORTOSENDO",
+        "lat": 40.23515672,
+        "lng": -7.527854907
+      },
+      {
+        "id": "7076",
+        "name": "LANOFABRIL",
+        "lat": 40.290734,
+        "lng": -7.505031
+      },
+      {
+        "id": "7166",
+        "name": "LANOFABRIL",
+        "lat": 40.290896,
+        "lng": -7.505109
+      },
+      {
+        "id": "7137",
+        "name": "LARGO ALAMPADA",
+        "lat": 40.25286333,
+        "lng": -7.499398333
+      },
+      {
+        "id": "95",
+        "name": "LARGO DA POUSADINHA",
+        "lat": 40.293953,
+        "lng": -7.506018
+      },
+      {
+        "id": "7167",
+        "name": "LARGO DA POUSADINHA",
+        "lat": 40.294006,
+        "lng": -7.50599
+      },
+      {
+        "id": "7120",
+        "name": "LARGO DE SANTO ANTÓNIO",
+        "lat": 40.26840453,
+        "lng": -7.513599178
+      },
+      {
+        "id": "168",
+        "name": "LARGO DE SANTO ANTÓNIO",
+        "lat": 40.26817314,
+        "lng": -7.513818389
+      },
+      {
+        "id": "7017",
+        "name": "MÁRTIR IN COLO",
+        "lat": 40.27592279,
+        "lng": -7.501745112
+      },
+      {
+        "id": "7129",
+        "name": "MÁRTIR IN COLO",
+        "lat": 40.27565432,
+        "lng": -7.501995078
+      },
+      {
+        "id": "7109",
+        "name": "MEIA LÉGUA",
+        "lat": 40.25603985,
+        "lng": -7.513214805
+      },
+      {
+        "id": "60",
+        "name": "MEIA LÉGUA",
+        "lat": 40.25601803,
+        "lng": -7.513357956
+      },
+      {
+        "id": "110",
+        "name": "MERCADO MUNICIPAL",
+        "lat": 40.27903058,
+        "lng": -7.504587088
+      },
+      {
+        "id": "7071",
+        "name": "MODATEX",
+        "lat": 40.28524835,
+        "lng": -7.508845954
+      },
+      {
+        "id": "7114",
+        "name": "N. SRA. DA CONCEIÇÃO",
+        "lat": 40.272842,
+        "lng": -7.504839728
+      },
+      {
+        "id": "55",
+        "name": "N. SRA. DA CONCEIÇÃO",
+        "lat": 40.27297084,
+        "lng": -7.504860166
+      },
+      {
+        "id": "138",
+        "name": "O PIMENTA",
+        "lat": 40.27581719,
+        "lng": -7.483565053
+      },
+      {
+        "id": "176",
+        "name": "O PIMENTA",
+        "lat": 40.275259,
+        "lng": -7.483263
+      },
+      {
+        "id": "7115",
+        "name": "PALMATÓRIA",
+        "lat": 40.27510181,
+        "lng": -7.504812775
+      },
+      {
+        "id": "54",
+        "name": "PALMATÓRIA",
+        "lat": 40.27517348,
+        "lng": -7.505175083
+      },
+      {
+        "id": "78",
+        "name": "PARQUE CAMPISMO PIÃO",
+        "lat": 40.287358,
+        "lng": -7.526975
+      },
+      {
+        "id": "79",
+        "name": "PARQUE CAMPISMO PIÃO",
+        "lat": 40.28737,
+        "lng": -7.52716
+      },
+      {
+        "id": "7029",
+        "name": "PARQUE INDUSTRIAL CANHOSO",
+        "lat": 40.28986004,
+        "lng": -7.482952338
+      },
+      {
+        "id": "7138",
+        "name": "PAULO OLIVEIRA",
+        "lat": 40.25503,
+        "lng": -7.497208333
+      },
+      {
+        "id": "17",
+        "name": "PAULO OLIVEIRA",
+        "lat": 40.25512129,
+        "lng": -7.497295426
+      },
+      {
+        "id": "106",
+        "name": "PEDRA DOS AMORES",
+        "lat": 40.28115319,
+        "lng": -7.520688564
+      },
+      {
+        "id": "107",
+        "name": "PEDRA DOS AMORES",
+        "lat": 40.28087124,
+        "lng": -7.519926205
+      },
+      {
+        "id": "7163",
+        "name": "PENEDOS ALTOS",
+        "lat": 40.28729199,
+        "lng": -7.50036675
+      },
+      {
+        "id": "7195",
+        "name": "PENEDOS ALTOS",
+        "lat": 40.28702381,
+        "lng": -7.500619203
+      },
+      {
+        "id": "9680",
+        "name": "PENHAS DA SAÚDE",
+        "lat": 40.307656,
+        "lng": -7.548432
+      },
+      {
+        "id": "77",
+        "name": "PENHAS DA SAÚDE",
+        "lat": 40.30761,
+        "lng": -7.548532
+      },
+      {
+        "id": "7030",
+        "name": "PIC ANTERO BRANCAL",
+        "lat": 40.289792,
+        "lng": -7.480493
+      },
+      {
+        "id": "7032",
+        "name": "PIC RAMALHA",
+        "lat": 40.292668,
+        "lng": -7.481004
+      },
+      {
+        "id": "7031",
+        "name": "PIC TINTAS CIN",
+        "lat": 40.29111095,
+        "lng": -7.480041225
+      },
+      {
+        "id": "1",
+        "name": "PIC TRANSDEV I",
+        "lat": 40.288787,
+        "lng": -7.477801
+      },
+      {
+        "id": "2",
+        "name": "PIC TRANSDEV II",
+        "lat": 40.288653,
+        "lng": -7.476118
+      },
+      {
+        "id": "63",
+        "name": "PINHOS MANSOS",
+        "lat": 40.24446057,
+        "lng": -7.517936654
+      },
+      {
+        "id": "7106",
+        "name": "PINHOS MANSOS",
+        "lat": 40.24451268,
+        "lng": -7.517575218
+      },
+      {
+        "id": "7090",
+        "name": "PIT CASCALHAL",
+        "lat": 40.232495,
+        "lng": -7.507606667
+      },
+      {
+        "id": "67",
+        "name": "PIT CASCALHAL",
+        "lat": 40.23249282,
+        "lng": -7.507395089
+      },
+      {
+        "id": "7092",
+        "name": "PIT MERCEDES",
+        "lat": 40.22669167,
+        "lng": -7.502523333
+      },
+      {
+        "id": "7094",
+        "name": "PIT NERCAB",
+        "lat": 40.22993333,
+        "lng": -7.502883333
+      },
+      {
+        "id": "7093",
+        "name": "PIT PARKURBIS",
+        "lat": 40.2293657,
+        "lng": -7.49921483
+      },
+      {
+        "id": "7091",
+        "name": "PIT PINTO E FILHO",
+        "lat": 40.229618,
+        "lng": -7.507585
+      },
+      {
+        "id": "7095",
+        "name": "PIT TERMINAL",
+        "lat": 40.23218,
+        "lng": -7.505691667
+      },
+      {
+        "id": "7035",
+        "name": "PONTE CANHOSO",
+        "lat": 40.297183,
+        "lng": -7.474848
+      },
+      {
+        "id": "45",
+        "name": "PONTE CANHOSO",
+        "lat": 40.297034,
+        "lng": -7.475144
+      },
+      {
+        "id": "33",
+        "name": "PONTE CANTAR-GALO",
+        "lat": 40.29500468,
+        "lng": -7.505883168
+      },
+      {
+        "id": "7078",
+        "name": "PONTE CANTAR-GALO",
+        "lat": 40.29512319,
+        "lng": -7.505923644
+      },
+      {
+        "id": "7053",
+        "name": "PONTE DA CARPINTEIRA",
+        "lat": 40.28504167,
+        "lng": -7.503488333
+      },
+      {
+        "id": "7043",
+        "name": "PONTE DA CARPINTEIRA",
+        "lat": 40.284725,
+        "lng": -7.503016667
+      },
+      {
+        "id": "7086",
+        "name": "PORTELA LARGO",
+        "lat": 40.31580251,
+        "lng": -7.486059125
+      },
+      {
+        "id": "94",
+        "name": "PORTELA LARGO",
+        "lat": 40.31582574,
+        "lng": -7.48589271
+      },
+      {
+        "id": "7085",
+        "name": "PORTELA TERMINAL",
+        "lat": 40.31928068,
+        "lng": -7.479337823
+      },
+      {
+        "id": "140",
+        "name": "POSTO TURISMO ANTIGO",
+        "lat": 40.271976,
+        "lng": -7.503838
+      },
+      {
+        "id": "143",
+        "name": "POSTO TURISMO ANTIGO",
+        "lat": 40.272053,
+        "lng": -7.504069
+      },
+      {
+        "id": "84",
+        "name": "POUSADA DA JUVENTUDE",
+        "lat": 40.310721,
+        "lng": -7.551746
+      },
+      {
+        "id": "85",
+        "name": "POUSADA DA JUVENTUDE",
+        "lat": 40.310563,
+        "lng": -7.55167
+      },
+      {
+        "id": "82",
+        "name": "POUSADA SERRA DA ESTRELA",
+        "lat": 40.292448,
+        "lng": -7.532936
+      },
+      {
+        "id": "83",
+        "name": "POUSADA SERRA DA ESTRELA",
+        "lat": 40.292613,
+        "lng": -7.533197
+      },
+      {
+        "id": "96",
+        "name": "POUSADINHA",
+        "lat": 40.297394,
+        "lng": -7.506464
+      },
+      {
+        "id": "7168",
+        "name": "POUSADINHA",
+        "lat": 40.297461,
+        "lng": -7.506377
+      },
+      {
+        "id": "144",
+        "name": "POUSO",
+        "lat": 40.306215,
+        "lng": -7.48681
+      },
+      {
+        "id": "7084",
+        "name": "POUSO",
+        "lat": 40.306384,
+        "lng": -7.486773
+      },
+      {
+        "id": "181",
+        "name": "POUSO",
+        "lat": 40.304889,
+        "lng": -7.485889
+      },
+      {
+        "id": "182",
+        "name": "POUSO",
+        "lat": 40.304972,
+        "lng": -7.485972
+      },
+      {
+        "id": "111",
+        "name": "PRAÇA DO MUNICÍPIO",
+        "lat": 40.28030209,
+        "lng": -7.504355246
+      },
+      {
+        "id": "7204",
+        "name": "PRAÇA DO MUNICÍPIO",
+        "lat": 40.2805179,
+        "lng": -7.504161385
+      },
+      {
+        "id": "146",
+        "name": "QTA. ESTREMILDA",
+        "lat": 40.236959,
+        "lng": -7.522378
+      },
+      {
+        "id": "147",
+        "name": "QTA. ESTREMILDA",
+        "lat": 40.236886,
+        "lng": -7.522612
+      },
+      {
+        "id": "153",
+        "name": "QTA. POLITO DE BAIXO",
+        "lat": 40.259179,
+        "lng": -7.507386
+      },
+      {
+        "id": "154",
+        "name": "QTA. POLITO DE BAIXO",
+        "lat": 40.258908,
+        "lng": -7.507669
+      },
+      {
+        "id": "137",
+        "name": "QTA. PONTE TERRA II",
+        "lat": 40.30129916,
+        "lng": -7.471605295
+      },
+      {
+        "id": "173",
+        "name": "QTA. ROSAS",
+        "lat": 40.28115666,
+        "lng": -7.491336647
+      },
+      {
+        "id": "160",
+        "name": "QTA. SANTO ANTÓNIO",
+        "lat": 40.2754204,
+        "lng": -7.507343098
+      },
+      {
+        "id": "161",
+        "name": "QTA. SANTO ANTÓNIO",
+        "lat": 40.27526999,
+        "lng": -7.507284089
+      },
+      {
+        "id": "183",
+        "name": "QUINTA DAS AMENDOEIRAS",
+        "lat": 40.254722,
+        "lng": -7.506583
+      },
+      {
+        "id": "184",
+        "name": "QUINTA DAS AMENDOEIRAS",
+        "lat": 40.25475,
+        "lng": -7.506667
+      },
+      {
+        "id": "7181",
+        "name": "QUINTA DAS ROSAS",
+        "lat": 40.28025833,
+        "lng": -7.488805
+      },
+      {
+        "id": "129",
+        "name": "QUINTA DO ESTRELA (COVELO)",
+        "lat": 40.278798,
+        "lng": -7.479954
+      },
+      {
+        "id": "164",
+        "name": "QUINTA DO SOL",
+        "lat": 40.26466568,
+        "lng": -7.50703698
+      },
+      {
+        "id": "7211",
+        "name": "QUINTA DO SOL",
+        "lat": 40.26449623,
+        "lng": -7.506852799
+      },
+      {
+        "id": "7110",
+        "name": "QUINTA NOVA",
+        "lat": 40.26231047,
+        "lng": -7.511858023
+      },
+      {
+        "id": "59",
+        "name": "QUINTA NOVA",
+        "lat": 40.26204049,
+        "lng": -7.512127763
+      },
+      {
+        "id": "114",
+        "name": "R. CELESTINO DAVID I",
+        "lat": 40.28932062,
+        "lng": -7.503457945
+      },
+      {
+        "id": "115",
+        "name": "R. CELESTINO DAVID I",
+        "lat": 40.28934194,
+        "lng": -7.503327945
+      },
+      {
+        "id": "75",
+        "name": "R. CELESTINO DAVID II",
+        "lat": 40.28806236,
+        "lng": -7.504407523
+      },
+      {
+        "id": "109",
+        "name": "R. CELESTINO DAVID II",
+        "lat": 40.28802349,
+        "lng": -7.504659651
+      },
+      {
+        "id": "175",
+        "name": "R. CIDADE DO FUNDÃO",
+        "lat": 40.27765567,
+        "lng": -7.501299452
+      },
+      {
+        "id": "112",
+        "name": "R. FERNANDO ANTUNES",
+        "lat": 40.29122,
+        "lng": -7.504275
+      },
+      {
+        "id": "113",
+        "name": "R. FERNANDO ANTUNES",
+        "lat": 40.291138,
+        "lng": -7.504337
+      },
+      {
+        "id": "52",
+        "name": "R. PENEDOS ALTOS",
+        "lat": 40.290452,
+        "lng": -7.501678
+      },
+      {
+        "id": "7161",
+        "name": "R. PENEDOS ALTOS",
+        "lat": 40.29059,
+        "lng": -7.50188
+      },
+      {
+        "id": "139",
+        "name": "R. TULIPAS II",
+        "lat": 40.27641425,
+        "lng": -7.479248557
+      },
+      {
+        "id": "21",
+        "name": "RÁDIO DA COVILHÃ",
+        "lat": 40.25812977,
+        "lng": -7.501030163
+      },
+      {
+        "id": "7134",
+        "name": "RÁDIO DA COVILHÃ",
+        "lat": 40.25804333,
+        "lng": -7.501063333
+      },
+      {
+        "id": "7123",
+        "name": "REFÚGIO",
+        "lat": 40.266201,
+        "lng": -7.506983
+      },
+      {
+        "id": "172",
+        "name": "REFÚGIO",
+        "lat": 40.2662692,
+        "lng": -7.506852796
+      },
+      {
+        "id": "7089",
+        "name": "REGO DE ÁGUA PORTELA",
+        "lat": 40.31070451,
+        "lng": -7.491774976
+      },
+      {
+        "id": "93",
+        "name": "REGO DE ÁGUA PORTELA",
+        "lat": 40.31070204,
+        "lng": -7.491720209
+      },
+      {
+        "id": "9678",
+        "name": "REPSOL",
+        "lat": 40.26682062,
+        "lng": -7.500137363
+      },
+      {
+        "id": "7193",
+        "name": "RIBEIRO FLANDRES I",
+        "lat": 40.28948027,
+        "lng": -7.498720807
+      },
+      {
+        "id": "41",
+        "name": "RIBEIRO FLANDRES I",
+        "lat": 40.2894808,
+        "lng": -7.498596274
+      },
+      {
+        "id": "42",
+        "name": "RIBEIRO FLANDRES II",
+        "lat": 40.28831029,
+        "lng": -7.497436288
+      },
+      {
+        "id": "7192",
+        "name": "RIBEIRO FLANDRES II",
+        "lat": 40.28838759,
+        "lng": -7.497361015
+      },
+      {
+        "id": "24",
+        "name": "ROTUNDA DOS CALDEIRÕES",
+        "lat": 40.264844,
+        "lng": -7.503524
+      },
+      {
+        "id": "7130",
+        "name": "ROTUNDA DOS CALDEIRÕES",
+        "lat": 40.264287,
+        "lng": -7.503581
+      },
+      {
+        "id": "124",
+        "name": "RUA CENTRO DAS ARTES",
+        "lat": 40.27084074,
+        "lng": -7.498285598
+      },
+      {
+        "id": "20",
+        "name": "RUA CENTRO PAROQUIAL",
+        "lat": 40.249704,
+        "lng": -7.493726
+      },
+      {
+        "id": "7141",
+        "name": "RUA CENTRO PAROQUIAL",
+        "lat": 40.249942,
+        "lng": -7.493706
+      },
+      {
+        "id": "7122",
+        "name": "RUA DA AMOREIRA",
+        "lat": 40.2673,
+        "lng": -7.510395
+      },
+      {
+        "id": "165",
+        "name": "RUA DA AMOREIRA",
+        "lat": 40.26733753,
+        "lng": -7.510435799
+      },
+      {
+        "id": "40",
+        "name": "RUA DA CALVA",
+        "lat": 40.28924857,
+        "lng": -7.500074415
+      },
+      {
+        "id": "7194",
+        "name": "RUA DA CALVA",
+        "lat": 40.28941123,
+        "lng": -7.499987243
+      },
+      {
+        "id": "31",
+        "name": "RUA DA INDÚSTRIA I",
+        "lat": 40.28968916,
+        "lng": -7.504742227
+      },
+      {
+        "id": "7075",
+        "name": "RUA DA INDÚSTRIA I",
+        "lat": 40.28965336,
+        "lng": -7.504613481
+      },
+      {
+        "id": "7077",
+        "name": "RUA DA INDÚSTRIA II",
+        "lat": 40.29288345,
+        "lng": -7.504700447
+      },
+      {
+        "id": "32",
+        "name": "RUA DA INDÚSTRIA II",
+        "lat": 40.29287373,
+        "lng": -7.504903426
+      },
+      {
+        "id": "128",
+        "name": "RUA DAS TULIPAS (COVELO)",
+        "lat": 40.277805,
+        "lng": -7.479534
+      },
+      {
+        "id": "7118",
+        "name": "RUA DE SANTO ANTÓNIO",
+        "lat": 40.271805,
+        "lng": -7.509928333
+      },
+      {
+        "id": "170",
+        "name": "RUA DE SANTO ANTÓNIO",
+        "lat": 40.27167433,
+        "lng": -7.509958187
+      },
+      {
+        "id": "167",
+        "name": "RUA DO COMÉRCIO",
+        "lat": 40.26741794,
+        "lng": -7.515170222
+      },
+      {
+        "id": "7207",
+        "name": "RUA DO COMÉRCIO",
+        "lat": 40.26695035,
+        "lng": -7.515845884
+      },
+      {
+        "id": "7153",
+        "name": "RUA DOS ABRUNHEIROS (COVELO)",
+        "lat": 40.27428956,
+        "lng": -7.479694922
+      },
+      {
+        "id": "7152",
+        "name": "RUA DOS CEDROS (COVELO)",
+        "lat": 40.27394072,
+        "lng": -7.478155962
+      },
+      {
+        "id": "7054",
+        "name": "RUA GREGÓRIO GERALDES",
+        "lat": 40.282007,
+        "lng": -7.506954
+      },
+      {
+        "id": "14",
+        "name": "RUA GREGÓRIO GERALDES",
+        "lat": 40.281953,
+        "lng": -7.507165
+      },
+      {
+        "id": "141",
+        "name": "RUA JOÃO XXIII",
+        "lat": 40.296464,
+        "lng": -7.478201
+      },
+      {
+        "id": "142",
+        "name": "RUA JOÃO XXIII",
+        "lat": 40.296489,
+        "lng": -7.47828
+      },
+      {
+        "id": "7064",
+        "name": "RUA JOSÉ CAETANO JR.",
+        "lat": 40.28641167,
+        "lng": -7.51386
+      },
+      {
+        "id": "7050",
+        "name": "RUA MATEUS FERNANDES",
+        "lat": 40.279755,
+        "lng": -7.498152
+      },
+      {
+        "id": "120",
+        "name": "RUA MATEUS FERNANDES",
+        "lat": 40.279407,
+        "lng": -7.498279
+      },
+      {
+        "id": "7056",
+        "name": "RUA MONTES HERMÍNIOS",
+        "lat": 40.281205,
+        "lng": -7.51243
+      },
+      {
+        "id": "7057",
+        "name": "RUA MONTES HERMÍNIOS",
+        "lat": 40.281125,
+        "lng": -7.512359
+      },
+      {
+        "id": "157",
+        "name": "RUA MONTES HERMÍNIOS I",
+        "lat": 40.281062,
+        "lng": -7.510504
+      },
+      {
+        "id": "158",
+        "name": "RUA MONTES HERMÍNIOS I",
+        "lat": 40.280989,
+        "lng": -7.510468
+      },
+      {
+        "id": "7055",
+        "name": "SANTA CASA DA MISERICÓRDIA",
+        "lat": 40.28214802,
+        "lng": -7.508672356
+      },
+      {
+        "id": "13",
+        "name": "SANTA CASA DA MISERICÓRDIA",
+        "lat": 40.28200193,
+        "lng": -7.508623991
+      },
+      {
+        "id": "38",
+        "name": "SÃO DOMINGOS",
+        "lat": 40.29873386,
+        "lng": -7.498342743
+      },
+      {
+        "id": "98",
+        "name": "SÃO DOMINGOS",
+        "lat": 40.29868325,
+        "lng": -7.498260554
+      },
+      {
+        "id": "99",
+        "name": "SÃO DOMINGOS",
+        "lat": 40.29852778,
+        "lng": -7.498468425
+      },
+      {
+        "id": "7080",
+        "name": "SÃO DOMINGOS",
+        "lat": 40.29847196,
+        "lng": -7.498391613
+      },
+      {
+        "id": "7125",
+        "name": "SERRA SHOPPING",
+        "lat": 40.27161806,
+        "lng": -7.500872396
+      },
+      {
+        "id": "7175",
+        "name": "SERRA SHOPPING",
+        "lat": 40.270431,
+        "lng": -7.501585
+      },
+      {
+        "id": "179",
+        "name": "SETE CAPOTES",
+        "lat": 40.269356,
+        "lng": -7.508245
+      },
+      {
+        "id": "180",
+        "name": "SETE CAPOTES",
+        "lat": 40.269185,
+        "lng": -7.508152
+      },
+      {
+        "id": "7023",
+        "name": "SHOPPING SPORTING",
+        "lat": 40.28018929,
+        "lng": -7.502774645
+      },
+      {
+        "id": "7002",
+        "name": "SHOPPING SPORTING",
+        "lat": 40.28028969,
+        "lng": -7.502558139
+      },
+      {
+        "id": "108",
+        "name": "SÍTIO DA PAREDE",
+        "lat": 40.233228,
+        "lng": -7.533505
+      },
+      {
+        "id": "74",
+        "name": "SÍTIO DA PAREDE",
+        "lat": 40.233292,
+        "lng": -7.533509
+      },
+      {
+        "id": "88",
+        "name": "SÍTIO DA POUSADA",
+        "lat": 40.23383199,
+        "lng": -7.537822311
+      },
+      {
+        "id": "61",
+        "name": "SUBESTAÇÃO MEIA LÉGUA",
+        "lat": 40.25261017,
+        "lng": -7.513740622
+      },
+      {
+        "id": "7108",
+        "name": "SUBESTAÇÃO MEIA LÉGUA",
+        "lat": 40.25266898,
+        "lng": -7.513603907
+      },
+      {
+        "id": "7131",
+        "name": "TCT REFÚGIO",
+        "lat": 40.261828,
+        "lng": -7.505775
+      },
+      {
+        "id": "23",
+        "name": "TCT REFÚGIO",
+        "lat": 40.262283,
+        "lng": -7.505069
+      },
+      {
+        "id": "47",
+        "name": "TEIXOSO CEMITÉRIO",
+        "lat": 40.31251488,
+        "lng": -7.457998585
+      },
+      {
+        "id": "7039",
+        "name": "TEIXOSO CEMITÉRIO",
+        "lat": 40.31249,
+        "lng": -7.457871667
+      },
+      {
+        "id": "7041",
+        "name": "TEIXOSO GNR",
+        "lat": 40.31859588,
+        "lng": -7.455983032
+      },
+      {
+        "id": "7040",
+        "name": "TEIXOSO QUIOSQUE",
+        "lat": 40.313611,
+        "lng": -7.457055
+      },
+      {
+        "id": "46",
+        "name": "TEIXOSO QUIOSQUE",
+        "lat": 40.313633,
+        "lng": -7.457071
+      },
+      {
+        "id": "7165",
+        "name": "TERMINAL 3",
+        "lat": 40.29262167,
+        "lng": -7.502308333
+      },
+      {
+        "id": "12",
+        "name": "TERMINAL RODOVIÁRIO",
+        "lat": 40.27374251,
+        "lng": -7.497770838
+      },
+      {
+        "id": "121",
+        "name": "TERMINAL RODOVIÁRIO",
+        "lat": 40.27383251,
+        "lng": -7.498787413
+      },
+      {
+        "id": "122",
+        "name": "TERMINAL RODOVIÁRIO",
+        "lat": 40.27392153,
+        "lng": -7.498387763
+      },
+      {
+        "id": "9681",
+        "name": "TORRE",
+        "lat": 40.32156381,
+        "lng": -7.613000115
+      },
+      {
+        "id": "64",
+        "name": "TORTOSENDO - ZÉ CARIOCA",
+        "lat": 40.23893565,
+        "lng": -7.526945406
+      },
+      {
+        "id": "7101",
+        "name": "TORTOSENDO - ZÉ CARIOCA",
+        "lat": 40.2387705,
+        "lng": -7.526988843
+      },
+      {
+        "id": "166",
+        "name": "TRAVESSA DA AMOREIRA",
+        "lat": 40.26715,
+        "lng": -7.512012
+      },
+      {
+        "id": "7208",
+        "name": "TRAVESSA DA AMOREIRA",
+        "lat": 40.267167,
+        "lng": -7.512052
+      },
+      {
+        "id": "169",
+        "name": "TRAVESSA DE SANTO ANTÓNIO",
+        "lat": 40.2706106,
+        "lng": -7.511226034
+      },
+      {
+        "id": "7119",
+        "name": "TRAVESSA DE SANTO ANTÓNIO",
+        "lat": 40.27042167,
+        "lng": -7.511741667
+      },
+      {
+        "id": "68",
+        "name": "TRIBUNAL",
+        "lat": 40.27721857,
+        "lng": -7.498541312
+      },
+      {
+        "id": "9674",
+        "name": "TRIBUNAL",
+        "lat": 40.277031,
+        "lng": -7.498371069
+      },
+      {
+        "id": "7005",
+        "name": "UBI",
+        "lat": 40.27793773,
+        "lng": -7.508558195
+      },
+      {
+        "id": "7020",
+        "name": "UBI",
+        "lat": 40.27785598,
+        "lng": -7.508606838
+      },
+      {
+        "id": "171",
+        "name": "UBI - AÇÃO SOCIAL",
+        "lat": 40.27368747,
+        "lng": -7.507329622
+      },
+      {
+        "id": "7117",
+        "name": "UBI - AÇÃO SOCIAL",
+        "lat": 40.27371167,
+        "lng": -7.507396667
+      },
+      {
+        "id": "126",
+        "name": "UBI - POLO III",
+        "lat": 40.26869666,
+        "lng": -7.494488537
+      },
+      {
+        "id": "7156",
+        "name": "UBI - POLO III",
+        "lat": 40.2685867,
+        "lng": -7.494052254
+      },
+      {
+        "id": "7065",
+        "name": "UBI - POLO IV",
+        "lat": 40.2888109,
+        "lng": -7.515145335
+      },
+      {
+        "id": "151",
+        "name": "URB. BELAVISTA",
+        "lat": 40.246367,
+        "lng": -7.508037
+      },
+      {
+        "id": "152",
+        "name": "URB. BELAVISTA",
+        "lat": 40.246403,
+        "lng": -7.508565
+      },
+      {
+        "id": "145",
+        "name": "URB. CLARABÓIA",
+        "lat": 40.235806,
+        "lng": -7.514171
+      },
+      {
+        "id": "90",
+        "name": "URBANIZAÇÃO BELO ZÊZERE",
+        "lat": 40.24353693,
+        "lng": -7.503499865
+      },
+      {
+        "id": "7144",
+        "name": "URBANIZAÇÃO BELO ZÊZERE",
+        "lat": 40.24337193,
+        "lng": -7.503623868
+      },
+      {
+        "id": "56",
+        "name": "URBANIZAÇÃO DA BOAVISTA",
+        "lat": 40.27061708,
+        "lng": -7.506918
+      },
+      {
+        "id": "7113",
+        "name": "URBANIZAÇÃO DA BOAVISTA",
+        "lat": 40.27104067,
+        "lng": -7.506287969
+      },
+      {
+        "id": "102",
+        "name": "URBANIZAÇÃO PERA LONGA I",
+        "lat": 40.23662066,
+        "lng": -7.519376628
+      },
+      {
+        "id": "103",
+        "name": "URBANIZAÇÃO PERA LONGA I",
+        "lat": 40.23641591,
+        "lng": -7.519349806
+      },
+      {
+        "id": "104",
+        "name": "URBANIZAÇÃO PERA LONGA II",
+        "lat": 40.23670924,
+        "lng": -7.514844929
+      },
+      {
+        "id": "105",
+        "name": "URBANIZAÇÃO PERA LONGA II",
+        "lat": 40.23666419,
+        "lng": -7.514781897
+      },
+      {
+        "id": "37",
+        "name": "VILA DO CARVALHO",
+        "lat": 40.307243,
+        "lng": -7.491572
+      },
+      {
+        "id": "7083",
+        "name": "VILA DO CARVALHO",
+        "lat": 40.307183,
+        "lng": -7.491564
+      }
     ]
   }
 ]
