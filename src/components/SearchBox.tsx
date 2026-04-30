@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, MapPin, Navigation, ArrowRight, Clock, Plus, X, GraduationCap, Building2, ShoppingBag, Landmark, Utensils, Bus, Info, Calendar } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Search, MapPin, Navigation, ArrowRight, Clock, Plus, X, GraduationCap, Building2, ShoppingBag, Landmark, Utensils, Bus, Info, Calendar, ChevronUp, ChevronDown } from 'lucide-react';
 import stopsData from '../../data/stops.json';
 import schedulesData from '../../data/schedules.json';
 
@@ -31,16 +31,153 @@ interface TripResult {
   line: string;
   lineName: string;
   origin: string;
+  originId: string;
   destination: string;
+  destinationId: string;
   departure: string;
   arrival: string;
   duration: number;
 }
 
 const typedStopsData = stopsData as StopGroup[];
+const allStops = typedStopsData[0].stops;
 const typedSchedulesData = schedulesData as ScheduleLine[];
 
-const SearchBox = () => {
+// --- MAPPING FOR FRIENDLY LINE NAMES ---
+const LINE_MAPPING: Record<string, string> = {
+  "2121": "21A",
+  "1001": "L1",
+  "1002": "L2",
+  "1003": "L3"
+};
+
+const formatLineName = (lineId: string) => {
+  const base = lineId.split('-')[0];
+  return LINE_MAPPING[base] || base;
+};
+
+// --- LONG PRESS BUTTON COMPONENT ---
+interface LongPressButtonProps {
+  onAction: () => void;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const LongPressButton: React.FC<LongPressButtonProps> = ({ onAction, children, className }) => {
+  const [pressing, setPressing] = useState(false);
+  const onActionRef = useRef(onAction);
+  
+  useEffect(() => {
+    onActionRef.current = onAction;
+  }, [onAction]);
+
+  useEffect(() => {
+    if (!pressing) return;
+
+    // Trigger immediately on first press
+    onActionRef.current();
+
+    let intervalId: any;
+    const timeoutId = setTimeout(() => {
+      intervalId = setInterval(() => {
+        onActionRef.current();
+      }, 80);
+    }, 300);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [pressing]);
+
+  return (
+    <button
+      onPointerDown={(e) => {
+        if (e.pointerType === 'touch') e.preventDefault();
+        setPressing(true);
+      }}
+      onPointerUp={() => setPressing(false)}
+      onPointerLeave={() => setPressing(false)}
+      onContextMenu={(e) => e.preventDefault()}
+      style={{ touchAction: 'none' }}
+      className={className}
+    >
+      {children}
+    </button>
+  );
+};
+
+// --- CUSTOM TIME SELECTOR COMPONENT ---
+interface TimeSelectorProps {
+  value: string;
+  onChange: (val: string) => void;
+  label: string;
+}
+
+const TimeSelector: React.FC<TimeSelectorProps> = ({ value, onChange, label }) => {
+  const [h, m] = value.split(':');
+  
+  const updateHour = (delta: number) => {
+    let newH = parseInt(h) + delta;
+    if (newH > 23) newH = 0;
+    if (newH < 0) newH = 23;
+    onChange(`${newH.toString().padStart(2, '0')}:${m}`);
+  };
+
+  const updateMin = (delta: number) => {
+    let newM = parseInt(m) + delta;
+    if (newM > 59) newM = 0;
+    if (newM < 0) newM = 59;
+    onChange(`${h}:${newM.toString().padStart(2, '0')}`);
+  };
+
+  return (
+    <div className="flex flex-col items-center">
+      <span className="text-[10px] text-gray-500 uppercase font-black tracking-tighter mb-2">{label}</span>
+      <div className="flex gap-1 items-center bg-white/5 p-1.5 rounded-2xl border border-white/10 shadow-inner">
+        {/* HOURS */}
+        <div className="flex flex-col items-center group">
+          <LongPressButton onAction={() => updateHour(1)} className="p-1 hover:text-cyan-400 transition-colors opacity-40 group-hover:opacity-100">
+            <ChevronUp size={14} />
+          </LongPressButton>
+          <div className="text-xl font-black text-white w-8 text-center tabular-nums">{h}</div>
+          <LongPressButton onAction={() => updateHour(-1)} className="p-1 hover:text-cyan-400 transition-colors opacity-40 group-hover:opacity-100">
+            <ChevronDown size={14} />
+          </LongPressButton>
+        </div>
+        
+        <div className="text-gray-600 font-bold mb-1">:</div>
+        
+        {/* MINUTES */}
+        <div className="flex flex-col items-center group">
+          <LongPressButton onAction={() => updateMin(5)} className="p-1 hover:text-cyan-400 transition-colors opacity-40 group-hover:opacity-100">
+            <ChevronUp size={14} />
+          </LongPressButton>
+          <div className="text-xl font-black text-white w-8 text-center tabular-nums">{m}</div>
+          <LongPressButton onAction={() => updateMin(-5)} className="p-1 hover:text-cyan-400 transition-colors opacity-40 group-hover:opacity-100">
+            <ChevronDown size={14} />
+          </LongPressButton>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface SearchBoxProps {
+  onStopHighlight?: (stopIds: string[]) => void;
+  onStopFocus?: (stopId: string | null) => void;
+  onRouteSelect?: (stopIds: string[]) => void;
+  manualOrigin?: string | null;
+  manualDest?: string | null;
+}
+
+const SearchBox: React.FC<SearchBoxProps> = ({ 
+  onStopHighlight, 
+  onStopFocus, 
+  onRouteSelect,
+  manualOrigin,
+  manualDest
+}) => {
   const [origins, setOrigins] = useState<Stop[]>([]);
   const [destinations, setDestinations] = useState<Stop[]>([]);
   const [showHelper, setShowHelper] = useState<'origin' | 'destination' | null>(null);
@@ -53,6 +190,21 @@ const SearchBox = () => {
   const [endTime, setEndTime] = useState("23:59");
   const [dayType, setDayType] = useState<'business' | 'saturday' | 'holiday'>('business');
 
+  // Handle manual selection from map
+  useEffect(() => {
+    if (manualOrigin) {
+      const stop = allStops.find(s => s.id === manualOrigin);
+      if (stop) addStop(stop, 'origin');
+    }
+  }, [manualOrigin]);
+
+  useEffect(() => {
+    if (manualDest) {
+      const stop = allStops.find(s => s.id === manualDest);
+      if (stop) addStop(stop, 'destination');
+    }
+  }, [manualDest]);
+
   const addStop = (stop: Stop, type: 'origin' | 'destination') => {
     if (type === 'origin') {
       if (!origins.find(s => s.id === stop.id)) setOrigins([...origins, stop]);
@@ -61,19 +213,36 @@ const SearchBox = () => {
     }
     setSearchTerm('');
     setShowHelper(null);
+    onStopFocus?.(stop.id);
   };
 
   const removeStop = (id: string, type: 'origin' | 'destination') => {
     if (type === 'origin') setOrigins(origins.filter(s => s.id !== id));
     else setDestinations(destinations.filter(s => s.id !== id));
+    onStopFocus?.(null);
+  };
+
+  const handleRouteClick = (lineId: string, originId: string, destId: string) => {
+    const line = typedSchedulesData.find(l => l.line === lineId);
+    if (!line) return;
+
+    const stopIds = line.stopIds || [];
+    const originIdx = stopIds.indexOf(originId);
+    const destIdx = stopIds.indexOf(destId);
+
+    if (originIdx !== -1 && destIdx !== -1) {
+      const pathIds = stopIds.slice(originIdx, destIdx + 1);
+      onRouteSelect?.(pathIds);
+    }
+    
+    onStopFocus?.(originId);
   };
 
   const normalize = (name: string) => {
     return name
       .toUpperCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remover acentos
-      .replace(/ESC\.|ESCOLA|PARAGEM|ESTAÇÃO/g, "") // Remover termos comuns
-      .replace(/[^A-Z0-9]/g, "") // Remover tudo o que não é letra ou número
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^A-Z0-9]/g, "")
       .trim();
   };
 
@@ -84,6 +253,9 @@ const SearchBox = () => {
     const originIds = origins.map(o => o.id);
     const destinationIds = destinations.map(d => d.id);
 
+    onRouteSelect?.([]);
+    onStopHighlight?.([...originIds, ...destinationIds]);
+
     for (const line of typedSchedulesData) {
       for (const trip of line.trips) {
         if (trip.dayType !== dayType && trip.dayType !== 'all') continue;
@@ -91,46 +263,50 @@ const SearchBox = () => {
         let bestOriginIdx = -1;
         let bestDestIdx = -1;
         let matchedOriginName = "";
+        let matchedOriginId = "";
         let matchedDestName = "";
+        let matchedDestId = "";
 
-        // Encontrar a primeira paragem que é uma das origens selecionadas E tem tempo no intervalo [targetTime, endTime]
-        for (let i = 0; i < (line.stopIds || line.stops).length; i++) {
-          const stopId = line.stopIds ? line.stopIds[i] : null;
-          const stopName = line.stops[i];
+        const currentStopIds = line.stopIds || [];
+        const currentStopNames = line.stops;
+
+        for (let i = 0; i < currentStopNames.length; i++) {
+          const stopId = currentStopIds[i];
+          const stopName = currentStopNames[i];
           const stopTime = trip.times[i];
 
           if (stopTime === "-" || stopTime === "--:--") continue;
 
-          const isOrigin = stopId 
-            ? originIds.includes(stopId) 
-            : origins.some(o => normalize(o.name) === normalize(stopName));
+          const matchedOrigin = origins.find(o => 
+            stopId ? o.id === stopId : normalize(o.name) === normalize(stopName)
+          );
 
-          if (isOrigin) {
-            // Verificar se o tempo está dentro da janela
+          if (matchedOrigin) {
             if (stopTime >= targetTime && stopTime <= endTime) {
               bestOriginIdx = i;
               matchedOriginName = stopName;
+              matchedOriginId = matchedOrigin.id;
               break; 
             }
           }
         }
 
-        // Se encontramos uma origem válida, procurar o destino depois dela
         if (bestOriginIdx !== -1) {
-          for (let i = bestOriginIdx + 1; i < (line.stopIds || line.stops).length; i++) {
-            const stopId = line.stopIds ? line.stopIds[i] : null;
-            const stopName = line.stops[i];
+          for (let i = bestOriginIdx + 1; i < currentStopNames.length; i++) {
+            const stopId = currentStopIds[i];
+            const stopName = currentStopNames[i];
             const stopTime = trip.times[i];
 
             if (stopTime === "-" || stopTime === "--:--") continue;
 
-            const isDest = stopId 
-              ? destinationIds.includes(stopId) 
-              : destinations.some(d => normalize(d.name) === normalize(stopName));
+            const matchedDest = destinations.find(d => 
+              stopId ? d.id === stopId : normalize(d.name) === normalize(stopName)
+            );
 
-            if (isDest) {
+            if (matchedDest) {
               bestDestIdx = i;
               matchedDestName = stopName;
+              matchedDestId = matchedDest.id;
             }
           }
         }
@@ -148,7 +324,9 @@ const SearchBox = () => {
             line: line.line,
             lineName: line.lineName,
             origin: matchedOriginName,
+            originId: matchedOriginId,
             destination: matchedDestName,
+            destinationId: matchedDestId,
             departure: depTime,
             arrival: arrTime,
             duration: duration
@@ -180,7 +358,7 @@ const SearchBox = () => {
                     s.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                     s.id.includes(searchTerm)
                   )
-                  .slice(0, 10) // Limitar para não inundar
+                  .slice(0, 10) 
                   .map(stop => (
                     <button
                       key={stop.id}
@@ -210,7 +388,7 @@ const SearchBox = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 px-4">
+    <div className="max-w-2xl mx-auto px-4 overflow-y-auto max-h-full custom-scrollbar pb-10">
       <div className="glass-container p-6 rounded-3xl shadow-2xl animate-fade-in relative z-20">
         <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
           <Bus className="text-cyan-400" /> Planear Viagem
@@ -279,9 +457,9 @@ const SearchBox = () => {
           </label>
           <div className="grid grid-cols-3 gap-2">
             {[
-              { id: 'business', label: 'Útil', icon: '💼' },
-              { id: 'saturday', label: 'Sábado', icon: '🛍️' },
-              { id: 'holiday', label: 'Feriado', icon: '⛪' }
+              { id: 'business', label: 'Dias Úteis', icon: '💼' },
+              { id: 'saturday', label: 'Sábados', icon: '🛍️' },
+              { id: 'holiday', label: 'Fins de Semana / Feriados', icon: '⛪' }
             ].map(type => (
               <button
                 key={type.id}
@@ -299,33 +477,20 @@ const SearchBox = () => {
           </div>
         </div>
 
-        {/* TIME PICKER RANGE */}
+        {/* TIME PICKER RANGE (CUSTOM 24H - CYCLED) */}
         <div className="mb-8">
-          <label className="text-xs font-semibold text-cyan-400/70 uppercase tracking-wider mb-2 block flex items-center gap-2">
-            <Clock size={14} /> Em que intervalo de horas?
+          <label className="text-xs font-semibold text-cyan-400/70 uppercase tracking-wider mb-4 block flex items-center gap-2">
+            <Clock size={14} /> Em que intervalo de horas? (24h)
           </label>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <span className="text-[10px] text-gray-500 uppercase font-bold ml-1">Depois de</span>
-              <input
-                type="time"
-                value={targetTime}
-                onChange={(e) => setTargetTime(e.target.value)}
-                className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white text-xl font-bold focus:border-cyan-500/50 outline-none transition-all"
-              />
-            </div>
-            <div className="space-y-1">
-              <span className="text-[10px] text-gray-500 uppercase font-bold ml-1">Até às</span>
-              <input
-                type="time"
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-                className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white text-xl font-bold focus:border-cyan-500/50 outline-none transition-all"
-              />
-            </div>
+          
+          <div className="flex items-center justify-around bg-white/2 backdrop-blur-sm p-4 rounded-3xl border border-white/5">
+            <TimeSelector value={targetTime} onChange={setTargetTime} label="A partir das" />
+            <div className="h-10 w-px bg-white/10 self-end mb-4" />
+            <TimeSelector value={endTime} onChange={setEndTime} label="Até às" />
           </div>
-          <p className="text-[10px] text-gray-500 mt-3 italic">
-            * Mostraremos autocarros com partida entre as {targetTime} e as {endTime}.
+          
+          <p className="text-[10px] text-gray-500 mt-4 italic text-center">
+            Podes manter premido para avançar as horas rapidamente.
           </p>
         </div>
 
@@ -347,18 +512,23 @@ const SearchBox = () => {
             {results.map((res, idx) => (
               <div 
                 key={idx} 
-                className="glass-container p-6 rounded-[2.5rem] border-l-4 border-l-cyan-500 hover:bg-white/5 transition-all animate-slide-up group"
+                onClick={() => handleRouteClick(res.line, res.originId, res.destinationId)}
+                onMouseEnter={() => onStopFocus?.(res.originId)}
+                className="glass-container p-6 rounded-[2.5rem] border-l-4 border-l-cyan-500 hover:bg-white/5 transition-all animate-slide-up group cursor-pointer"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
-                <div className="flex justify-between items-start mb-2">
+                <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="bg-gradient-to-br from-cyan-500 to-blue-600 text-white font-black px-4 py-1.5 rounded-xl text-xs tracking-tighter shadow-lg shadow-cyan-900/20">
-                      {res.line.split('-')[0]}
+                    <div className="flex flex-col items-center">
+                      <span className="text-[9px] font-black text-cyan-500 uppercase tracking-widest mb-1">Linha</span>
+                      <div className="bg-gradient-to-br from-cyan-500 to-blue-600 text-white font-black px-4 py-2 rounded-2xl text-base tracking-tighter shadow-lg shadow-cyan-900/30 min-w-[50px] text-center">
+                        {formatLineName(res.line)}
+                      </div>
                     </div>
-                    <div>
+                    <div className="pt-4">
                       <h4 className="text-white font-bold text-sm leading-tight group-hover:text-cyan-400 transition-colors">{res.lineName}</h4>
                       <p className="text-gray-500 text-[10px] uppercase font-black tracking-widest mt-1 opacity-60">
-                        {dayType === 'business' ? 'Dias Úteis' : dayType === 'saturday' ? 'Sábados' : 'Feriados/Domingos'}
+                        {dayType === 'business' ? 'Dias Úteis' : dayType === 'saturday' ? 'Sábados' : 'Fins de Semana / Feriados'}
                       </p>
                     </div>
                   </div>
@@ -381,7 +551,7 @@ const SearchBox = () => {
                 
                 <div className="flex items-center gap-4 mb-5">
                   <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent relative">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#121826] px-3">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#121826] px-3 border border-white/5 rounded-full">
                       <ArrowRight size={14} className="text-gray-600 group-hover:text-cyan-400 transition-colors" />
                     </div>
                   </div>

@@ -1,45 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg-color: #0a0e17;
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --accent-cyan: #00f2ff;
-  --accent-blue: #3b82f6;
-  --accent-purple: #a855f7;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
-  padding: 0;
-  font-family: 'Outfit', sans-serif;
-  background: var(--bg-color);
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+  background-color: #0f1219;
   color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.glass-container {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+/* Leaflet Fixes */
+.leaflet-container {
+  width: 100%;
+  height: 100% !important;
+  background: #0f1219 !important;
+  outline: none;
 }
 
+/* Custom Scrollbar for a premium feel */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -51,19 +40,64 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Glassmorphism utility */
+.glass-container {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@keyframes slide-up {
+/* Leaflet Popup Styling to match Dark Mode */
+.leaflet-popup-content-wrapper {
+  background: rgba(20, 25, 35, 0.9) !important;
+  backdrop-filter: blur(8px);
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(20, 25, 35, 0.9) !important;
+}
+
+/* Leaflet Reset & Custom Styles */
+.custom-cluster-icon {
+  background: none !important;
+  border: none !important;
+}
+
+.leaflet-marker-icon {
+  background: none;
+  border: none;
+}
+
+/* Pulse Animation for selected stop */
+@keyframes pulse-cyan {
+  0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(6, 182, 212, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+}
+
+.marker-pulse {
+  animation: pulse-cyan 2s infinite;
+  border-radius: 50%;
+}
+
+/* Animations */
+@keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
-.animate-slide-up { animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
 
-input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
 }
