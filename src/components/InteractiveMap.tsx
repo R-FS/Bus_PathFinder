@@ -21,6 +21,8 @@ interface InteractiveMapProps {
   highlightedStops?: string[];
   centerStopId?: string | null;
   routeStopIds?: string[];
+  selectedLineId?: string | null;
+  liveBuses?: any[];
   onSelectAsOrigin?: (stopId: string) => void;
   onSelectAsDest?: (stopId: string) => void;
 }
@@ -209,7 +211,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         {/* OTHER STOPS (CLUSTERED) */}
         <MarkerClusterGroup
           chunkedLoading
-          iconCreateFunction={(cluster) => {
+          iconCreateFunction={(cluster: any) => {
             return L.divIcon({
               html: `<div class="bg-cyan-500/20 backdrop-blur-md border border-cyan-500/50 text-cyan-400 font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-lg shadow-cyan-900/40">${cluster.getChildCount()}</div>`,
               className: 'custom-cluster-icon',

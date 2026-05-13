@@ -166,7 +166,7 @@ const TimeSelector: React.FC<TimeSelectorProps> = ({ value, onChange, label }) =
 interface SearchBoxProps {
   onStopHighlight?: (stopIds: string[]) => void;
   onStopFocus?: (stopId: string | null) => void;
-  onRouteSelect?: (stopIds: string[]) => void;
+  onRouteSelect?: (stopIds: string[], lineId: string | null) => void;
   manualOrigin?: string | null;
   manualDest?: string | null;
 }
@@ -232,7 +232,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
 
     if (originIdx !== -1 && destIdx !== -1) {
       const pathIds = stopIds.slice(originIdx, destIdx + 1);
-      onRouteSelect?.(pathIds);
+      onRouteSelect?.(pathIds, line.line);
     }
     
     onStopFocus?.(originId);
@@ -253,7 +253,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
     const originIds = origins.map(o => o.id);
     const destinationIds = destinations.map(d => d.id);
 
-    onRouteSelect?.([]);
+    onRouteSelect?.([], null);
     onStopHighlight?.([...originIds, ...destinationIds]);
 
     for (const line of typedSchedulesData) {
