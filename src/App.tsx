@@ -69,20 +69,23 @@ function App() {
         {/* RIGHT COLUMN: Map (Sticky) */}
         <div className={`flex-1 h-[calc(100vh-230px)] md:h-auto md:min-h-0 ${view === 'search' ? 'hidden md:block' : 'block'}`}>
           <div className="md:sticky md:top-6 h-full md:h-[calc(100vh-160px)]">
-            <InteractiveMap 
-              highlightedStops={highlightedStops} 
-              centerStopId={centerStopId}
-              routeStopIds={routeStopIds}
-              selectedLineId={selectedLineId}
-              onSelectAsOrigin={(id) => {
-                setManualOrigin(id);
-                setView('search'); // Auto switch to search on selecting origin
-              }}
-              onSelectAsDest={(id) => {
-                setManualDest(id);
-                setView('search'); // Auto switch to search on selecting destination
-              }}
-            />
+            {(view === 'map' || window.innerWidth >= 768) && (
+              <InteractiveMap 
+                key={view}
+                highlightedStops={highlightedStops} 
+                centerStopId={centerStopId}
+                routeStopIds={routeStopIds}
+                selectedLineId={selectedLineId}
+                onSelectAsOrigin={(id) => {
+                  setManualOrigin(id);
+                  setView('search'); // Auto switch to search on selecting origin
+                }}
+                onSelectAsDest={(id) => {
+                  setManualDest(id);
+                  setView('search'); // Auto switch to search on selecting destination
+                }}
+              />
+            )}
           </div>
         </div>
 
