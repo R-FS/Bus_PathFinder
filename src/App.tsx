@@ -116,6 +116,7 @@ function App() {
             )}
 
             <InteractiveMap 
+              key={view}
               highlightedStops={highlightedStops} 
               centerStopId={centerStopId}
               routeStopIds={routeStopIds}
