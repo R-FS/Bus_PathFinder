@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Popup, useMap, Polyline } from 'react-leaflet';
-import MarkerClusterGroup from 'react-leaflet-cluster';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import stopsData from '../../data/stops.json';
@@ -208,19 +207,8 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         {/* ROUTE STOPS (OUTSIDE CLUSTER) */}
         {routeStops.map(s => renderStop(s, true))}
 
-        {/* OTHER STOPS (CLUSTERED) */}
-        <MarkerClusterGroup
-          chunkedLoading
-          iconCreateFunction={(cluster: any) => {
-            return L.divIcon({
-              html: `<div class="bg-cyan-500/20 backdrop-blur-md border border-cyan-500/50 text-cyan-400 font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-lg shadow-cyan-900/40">${cluster.getChildCount()}</div>`,
-              className: 'custom-cluster-icon',
-              iconSize: L.point(40, 40),
-            });
-          }}
-        >
-          {clusteredStops.map(s => renderStop(s, false))}
-        </MarkerClusterGroup>
+        {/* OTHER STOPS */}
+        {clusteredStops.map(s => renderStop(s, false))}
       </MapContainer>
 
       <div className="absolute bottom-4 right-4 z-[1000] bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 text-[10px] text-gray-400 font-medium">
