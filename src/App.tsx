@@ -87,8 +87,8 @@ function App() {
         </div>
 
         {/* RIGHT COLUMN: Map (Immersive fullscreen on mobile map view) */}
-        <div className={`flex-1 ${view === 'search' ? 'hidden md:block' : 'block'} ${view === 'map' ? 'h-[calc(100vh-80px)] md:h-auto' : 'h-[500px]'} relative`}>
-          <div className="md:sticky md:top-6 h-full md:h-[calc(100vh-160px)] relative">
+        <div className={`flex-1 ${view === 'search' ? 'hidden md:block' : 'block'} ${view === 'map' ? 'h-[600px] md:h-[calc(100vh-180px)]' : 'h-[500px]'} relative`}>
+          <div className={`md:sticky md:top-6 ${view === 'map' ? 'h-[600px] md:h-full' : 'h-[500px] md:h-full'} relative`}>
             
             {/* FLOATING ROUTE INFO CARD OVER MAP */}
             {routeStopIds.length > 0 && selectedLineId && (
