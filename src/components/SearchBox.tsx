@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, MapPin, Navigation, ArrowRight, Clock, Plus, X, GraduationCap, Building2, ShoppingBag, Landmark, Utensils, Bus, Info, Calendar, ChevronUp, ChevronDown } from 'lucide-react';
+import { Search, MapPin, Navigation, ArrowRight, Clock, Plus, X, GraduationCap, Building2, ShoppingBag, Landmark, Utensils, Bus, Info, Calendar, ChevronUp, ChevronDown, Map as MapIcon } from 'lucide-react';
 import stopsData from '../../data/stops.json';
 import schedulesData from '../../data/schedules.json';
 
@@ -166,6 +166,7 @@ const TimeSelector: React.FC<TimeSelectorProps> = ({ value, onChange, label }) =
 interface SearchBoxProps {
   onStopHighlight?: (stopIds: string[]) => void;
   onStopFocus?: (stopId: string | null) => void;
+  onStopMapFocus?: (stopId: string) => void;
   onRouteSelect?: (stopIds: string[], lineId: string | null) => void;
   manualOrigin?: string | null;
   manualDest?: string | null;
@@ -174,6 +175,7 @@ interface SearchBoxProps {
 const SearchBox: React.FC<SearchBoxProps> = ({ 
   onStopHighlight, 
   onStopFocus, 
+  onStopMapFocus,
   onRouteSelect,
   manualOrigin,
   manualDest
@@ -400,10 +402,27 @@ const SearchBox: React.FC<SearchBoxProps> = ({
           <div className="relative">
             <div className={`flex flex-wrap gap-2 p-3 bg-white/5 border border-white/10 rounded-xl transition-all min-h-[50px] ${showHelper === 'origin' ? 'border-cyan-500/50 bg-cyan-500/5 ring-4 ring-cyan-500/10' : ''}`}>
               {origins.map(stop => (
-                <span key={stop.id} className="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-[11px] font-bold flex items-center gap-1.5 border border-cyan-500/30">
+                <span key={stop.id} className="bg-cyan-500/20 text-cyan-300 px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1.5 border border-cyan-500/30">
+                  <button 
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onStopMapFocus?.(stop.id);
+                    }}
+                    className="hover:text-white hover:scale-115 transition-all flex items-center p-0.5"
+                    title="Ver no mapa"
+                  >
+                    <MapPin size={11} className="text-cyan-400" />
+                  </button>
                   <span className="opacity-40 font-mono text-[9px]">#{stop.id}</span>
-                  {stop.name}
-                  <X size={14} className="cursor-pointer hover:text-white" onClick={() => removeStop(stop.id, 'origin')} />
+                  <span>{stop.name}</span>
+                  <button 
+                    type="button"
+                    onClick={() => removeStop(stop.id, 'origin')}
+                    className="hover:text-white hover:scale-115 transition-all flex items-center p-0.5"
+                  >
+                    <X size={13} />
+                  </button>
                 </span>
               ))}
               <input
@@ -428,10 +447,27 @@ const SearchBox: React.FC<SearchBoxProps> = ({
           <div className="relative">
             <div className={`flex flex-wrap gap-2 p-3 bg-white/5 border border-white/10 rounded-xl transition-all min-h-[50px] ${showHelper === 'destination' ? 'border-purple-500/50 bg-purple-500/5 ring-4 ring-purple-500/10' : ''}`}>
               {destinations.map(stop => (
-                <span key={stop.id} className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-[11px] font-bold flex items-center gap-1.5 border border-purple-500/30">
+                <span key={stop.id} className="bg-purple-500/20 text-purple-300 px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1.5 border border-purple-500/30">
+                  <button 
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onStopMapFocus?.(stop.id);
+                    }}
+                    className="hover:text-white hover:scale-115 transition-all flex items-center p-0.5"
+                    title="Ver no mapa"
+                  >
+                    <MapPin size={11} className="text-purple-400" />
+                  </button>
                   <span className="opacity-40 font-mono text-[9px]">#{stop.id}</span>
-                  {stop.name}
-                  <X size={14} className="cursor-pointer hover:text-white" onClick={() => removeStop(stop.id, 'destination')} />
+                  <span>{stop.name}</span>
+                  <button 
+                    type="button"
+                    onClick={() => removeStop(stop.id, 'destination')}
+                    className="hover:text-white hover:scale-115 transition-all flex items-center p-0.5"
+                  >
+                    <X size={13} />
+                  </button>
                 </span>
               ))}
               <input
@@ -567,9 +603,11 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                       <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Tempo Estimado</p>
                     </div>
                   </div>
-                  <div className="text-right">
+                   <div className="flex flex-col items-end gap-1">
                     <div className="text-xl font-bold text-gray-300 tracking-tight">{res.arrival}</div>
-                    <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">Chegada prevista</div>
+                    <span className="text-[9px] text-cyan-400/80 bg-cyan-500/10 px-2 py-0.5 rounded-full font-bold uppercase border border-cyan-500/20 group-hover:bg-cyan-500 group-hover:text-white transition-all flex items-center gap-1">
+                      <MapIcon size={10} /> Ver Rota
+                    </span>
                   </div>
                 </div>
               </div>
