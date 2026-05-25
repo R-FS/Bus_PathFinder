@@ -32,7 +32,10 @@ const allStops = typedStopsData[0].stops;
 const ResizeMap = () => {
   const map = useMap();
   useEffect(() => {
-    setTimeout(() => { map.invalidateSize(); }, 100);
+    setTimeout(() => { 
+      map.invalidateSize();
+      window.dispatchEvent(new Event('resize'));
+    }, 200);
   }, [map]);
   return null;
 };

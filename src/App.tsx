@@ -115,23 +115,25 @@ function App() {
               </div>
             )}
 
-            <InteractiveMap 
-              key={view}
-              highlightedStops={highlightedStops} 
-              centerStopId={centerStopId}
-              routeStopIds={routeStopIds}
-              selectedLineId={selectedLineId}
-              onSelectAsOrigin={(id) => {
-                setManualOrigin(id);
-                // Switch back to search screen so they can choose destination or see schedules
-                setView('search');
-              }}
-              onSelectAsDest={(id) => {
-                setManualDest(id);
-                // Switch back to search screen so they can see schedules or choose origin
-                setView('search');
-              }}
-            />
+            {(view === 'map' || window.innerWidth >= 768) && (
+              <InteractiveMap 
+                key={view}
+                highlightedStops={highlightedStops} 
+                centerStopId={centerStopId}
+                routeStopIds={routeStopIds}
+                selectedLineId={selectedLineId}
+                onSelectAsOrigin={(id) => {
+                  setManualOrigin(id);
+                  // Switch back to search screen so they can choose destination or see schedules
+                  setView('search');
+                }}
+                onSelectAsDest={(id) => {
+                  setManualDest(id);
+                  // Switch back to search screen so they can see schedules or choose origin
+                  setView('search');
+                }}
+              />
+            )}
           </div>
         </div>
 
